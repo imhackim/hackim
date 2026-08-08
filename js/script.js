@@ -1465,6 +1465,7 @@ document.addEventListener('DOMContentLoaded', () => {
             uniform vec2 uMouse;
             uniform float uHover;
             uniform float uIntensity;
+            uniform float uRadius;
             uniform float uContainerAspect;
             uniform float uImageAspect;
             varying vec2 vUv;
@@ -1486,22 +1487,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 vec2 coverUv = st + vec2(0.5);
 
-                // Refined magnify lens (reduced by 50%) + Cinematic Chromatic RGB Aberration
                 vec2 uvR = coverUv;
                 vec2 uvG = coverUv;
                 vec2 uvB = coverUv;
 
                 float dist = distance(uv, uMouse);
-                if (dist < 0.55 && uHover > 0.001) {
-                    float factor = (1.0 - dist / 0.55);
-                    // Reduced magnify ratio by 50% (0.022 instead of 0.045)
+                if (dist < uRadius && uHover > 0.001) {
+                    float factor = (1.0 - dist / uRadius);
                     float disp = sin(factor * 3.14159265) * 0.022 * uHover * uIntensity;
                     vec2 dir = normalize(uv - uMouse + vec2(0.0001));
                     
                     // Main lens displacement
                     coverUv -= dir * disp;
 
-                    // Chromatic Aberration RGB Shift (Reduced by another 50% for ultra-subtle feel)
+                    // Chromatic Aberration RGB Shift
                     float rgbOffset = disp * 0.46;
                     uvR = coverUv - dir * rgbOffset;
                     uvG = coverUv;
@@ -1549,8 +1548,10 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasEl.width = width;
             canvasEl.height = height;
 
+            // Showreel poster gets 50% smaller radius (0.275) & reduced distortion intensity (0.35). Project cards remain untouched (0.55 & 1.0).
             const isShowreel = containerEl.classList.contains('showreel-poster') || containerEl.closest('.showreel-inner') !== null;
-            const effectIntensity = isShowreel ? 0.75 : 1.0;
+            const effectIntensity = isShowreel ? 0.35 : 1.0;
+            const effectRadius = isShowreel ? 0.275 : 0.55;
 
             let aspect = (width / height) || (16 / 9);
             const scene = new THREE.Scene();
@@ -1571,6 +1572,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     uMouse: { value: new THREE.Vector2(0.5, 0.5) },
                     uHover: { value: 0.0 },
                     uIntensity: { value: effectIntensity },
+                    uRadius: { value: effectRadius },
                     uContainerAspect: { value: aspect },
                     uImageAspect: { value: 16 / 9 }
                 },
