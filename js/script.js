@@ -1486,13 +1486,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 vec2 coverUv = st + vec2(0.5);
 
-                // Refined optical magnify lens distortion on hover
+                // Refined magnify lens (reduced by 50%) + Cinematic Chromatic RGB Aberration
+                vec2 uvR = coverUv;
+                vec2 uvG = coverUv;
+                vec2 uvB = coverUv;
+
                 float dist = distance(uv, uMouse);
                 if (dist < 0.55 && uHover > 0.001) {
                     float factor = (1.0 - dist / 0.55);
-                    float disp = sin(factor * 3.14159265) * 0.045 * uHover * uIntensity;
+                    // Reduced magnify ratio by 50% (0.022 instead of 0.045)
+                    float disp = sin(factor * 3.14159265) * 0.022 * uHover * uIntensity;
                     vec2 dir = normalize(uv - uMouse + vec2(0.0001));
+                    
+                    // Main lens displacement
                     coverUv -= dir * disp;
+
+                    // Chromatic Aberration RGB Shift (Red shifts outward, Blue shifts inward)
+                    float rgbOffset = disp * 1.85;
+                    uvR = coverUv - dir * rgbOffset;
+                    uvG = coverUv;
+                    uvB = coverUv + dir * rgbOffset;
                 }
 
                 // Smooth SDF corner clipping to fill 100% of container frame
@@ -1500,8 +1513,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 float d = roundedBoxSDF(p, vec2(0.5, 0.5), 0.04);
                 if (d > 0.0) discard;
 
-                vec4 color = texture2D(uTexture, coverUv);
-                gl_FragColor = color;
+                // Sample RGB channels separately for crisp cinematic Chromatic Aberration
+                float rChannel = texture2D(uTexture, uvR).r;
+                float gChannel = texture2D(uTexture, uvG).g;
+                float bChannel = texture2D(uTexture, uvB).b;
+                float aChannel = texture2D(uTexture, coverUv).a;
+
+                gl_FragColor = vec4(rChannel, gChannel, bChannel, aChannel);
             }
         `;
 
