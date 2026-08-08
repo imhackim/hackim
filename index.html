@@ -26,8 +26,8 @@
     <meta name="theme-color" content="#0A0A0A">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/favicon.png">
-    <link rel="preload" href="css/style.css?v=2" as="style">
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
     <script>
         history.scrollRestoration = "manual";
     </script>
@@ -1023,10 +1023,12 @@
         <source src="audio/a-beautiful-mess.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Three.js 3D Engine -->
+    <script src="libs/three.min.js" defer></script>
     <!-- Lenis Smooth Scroll (10KB — critical for UX) -->
     <script src="libs/lenis.min.js" defer></script>
     <!-- Main Script -->
-    <script src="js/script.js?v=3" defer></script>
+    <script src="js/script.js" defer></script>
 
     <!-- Lazy-load Three.js + GLTFLoader + 3D Logo Data -->
     <script>
