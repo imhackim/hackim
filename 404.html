@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; frame-src https:; connect-src 'self' https:;">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Error 404 | Ahmed Hackim</title>
+    <meta name="description" content="Page not found — Ahmed Hackim's portfolio. Return to explore cinematic commercial films, fashion campaigns, and art direction projects.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Page Not Found | Ahmed Hackim">
+    <meta property="og:description" content="Page not found. Return to Ahmed Hackim's portfolio to explore cinematic commercial films, fashion campaigns, and art direction.">
+    <meta property="og:image" content="images/profile.jpg">
+    <meta property="og:url" content="https://ahmedhackim.com/404.html">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Page Not Found | Ahmed Hackim">
+    <meta name="twitter:description" content="Page not found. Return to explore cinematic commercial films, fashion campaigns, and art direction.">
+    <meta name="twitter:image" content="images/profile.jpg">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ahmedhackim.com/404.html">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .error-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .error-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.8) 100%);
+        }
+
+        /* Ensure header links are positioned correctly */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md) var(--space-xl);
+            z-index: 1000;
+        }
+
+        .header-logo .logo-img {
+            height: 20px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-link {
+            font-family: var(--font-display) !important;
+            font-size: 20px !important;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            font-style: italic !important;
+            font-weight: 400 !important;
+        }
+
+        .error-status {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            font-family: var(--font-accent);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            z-index: 1000;
+            cursor: default;
+            user-select: none;
+            opacity: 0.8;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        
+        .error-status:hover {
+            color: var(--accent-gold);
+        }
+
+        .desktop-video {
+            display: block;
+        }
+
+        .mobile-video {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-video {
+                display: none;
+            }
+            .mobile-video {
+                display: block;
+            }
+            .error-status {
+                bottom: 70px;
+                left: 16px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-nav" style="position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#febd43;padding:12px 24px;z-index:99999;border-radius:0 0 8px 8px;font-size:14px;text-decoration:none;transition:top 0.3s ease;">Skip to content</a>
+    <h1 class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Page Not Found - Ahmed Hackim</h1>
+
+    <!-- ==================== CUSTOM CURSOR & CINEMATIC OVERLAYS ==================== -->
+    <div class="cursor" id="cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+    <div class="film-grain-overlay" aria-hidden="true"></div>
+
+    <!-- ==================== HEADER / NAVIGATION ==================== -->
+    <header class="header is-visible" id="header">
+        <a href="index.html" class="header-logo" aria-label="Home">
+            <img src="images/WordMark.png" alt="Hackim" class="logo-img" height="20" fetchpriority="high">
+        </a>
+        <nav class="header-nav">
+            <ul class="nav-list" style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 2rem;">
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link magnetic-item" data-hover="Portfolio">
+                        <span class="nav-link-default">Portfolio</span>
+                        <span class="nav-link-alt">Portfolio</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- ==================== BACKGROUND VIDEO ==================== -->
+        <div class="error-bg">
+            <video class="video-element desktop-video" autoplay loop muted playsinline>
+                <source src="videos/404.mp4" type="video/mp4">
+            </video>
+            <video class="video-element mobile-video" autoplay loop muted playsinline>
+                <source src="videos/404-mob.mp4" type="video/mp4">
+            </video>
+            <div class="error-bg-overlay"></div>
+        </div>
+
+        <!-- ===== FLOATING AUDIO CONTROLS (BOTTOM LEFT) ===== -->
+        <div class="floating-audio-controls">
+            <!-- Music Toggle -->
+            <button class="floating-sound-btn magnetic-item" id="musicToggle" aria-label="Toggle background music">
+                <span class="sound-bars">
+                    <span class="sound-bar"></span>
+                    <span class="sound-bar"></span>
+                    <span class="sound-bar"></span>
+                    <span class="sound-bar"></span>
+                </span>
+                <span class="sound-label">MUSIC</span>
+            </button>
+
+            <!-- SFX Toggle -->
+            <button class="floating-sound-btn magnetic-item" id="sfxToggle" aria-label="Toggle sound effects">
+                <span class="sound-bars">
+                    <span class="sound-bar"></span>
+                    <span class="sound-bar"></span>
+                    <span class="sound-bar"></span>
+                </span>
+                <span class="sound-label">SFX</span>
+            </button>
+        </div>
+
+        <!-- Background Audio File -->
+        <audio id="bgAudio" src="audio/a-beautiful-mess.mp3" loop preload="auto"></audio>
+
+        <!-- ===== STATUS INDICATOR (BOTTOM RIGHT) ===== -->
+        <div class="error-status">
+            <span>STATUS: LOST IN IMAGINATION</span>
+        </div>
+    </main>
+
+    <script src="js/404_script.js" defer></script>
+</body>
+</html>
+
