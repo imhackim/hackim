@@ -1434,29 +1434,27 @@ document.addEventListener('DOMContentLoaded', () => {
         animate3D();
     };
 
-    // ==================== INTERACTIVE WEBGL 3D MESH BENDING (COPIED FROM PORTFOLIO.HTML) ====================
+    // ==================== INTERACTIVE WEBGL 3D MESH BENDING (EXACT MATCH TO PORTFOLIO.HTML) ====================
     const initWebGLImageLensEffect = () => {
         if (typeof THREE === 'undefined' || window.innerWidth <= 768) return;
 
+        // Subtle & refined mesh bending shaders (100% exact match to portfolio.html)
         const meshBendingVertexShader = `
             uniform vec2 uMouse;
             uniform float uHover;
-            uniform float uIntensity;
-            uniform float uRadius;
             varying vec2 vUv;
 
             void main() {
                 vUv = uv;
                 vec3 pos = position;
 
-                vec2 m = uMouse;
-                float dist = distance(vUv, m);
-
-                if (dist < uRadius && uHover > 0.001) {
-                    float factor = (1.0 - dist / uRadius);
-                    float bend = sin(factor * 3.14159265) * 0.45 * uHover * uIntensity;
-                    pos.z += bend;
-                }
+                // Subtle & refined vertex bending intensity
+                float distToMouse = distance(uv, uMouse);
+                float mouseInfluence = smoothstep(0.65, 0.0, distToMouse) * uHover;
+                
+                pos.z += mouseInfluence * 0.15;
+                pos.x += (uv.x - uMouse.x) * mouseInfluence * 0.08;
+                pos.y += (uv.y - uMouse.y) * mouseInfluence * 0.08;
 
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
             }
@@ -1464,31 +1462,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const meshBendingFragmentShader = `
             uniform sampler2D uTexture;
-            uniform vec2 uMouse;
-            uniform float uHover;
-            uniform float uIntensity;
-            uniform float uRadius;
             varying vec2 vUv;
+
+            float roundedBoxSDF(vec2 p, vec2 b, float r) {
+                vec2 d = abs(p) - b + vec2(r);
+                return min(max(d.x, d.y), 0.0) + length(max(d, 0.0)) - r;
+            }
 
             void main() {
                 vec2 uv = vUv;
-                vec2 m = uMouse;
-                float dist = distance(uv, m);
 
-                if (dist < uRadius && uHover > 0.001) {
-                    float factor = (1.0 - dist / uRadius);
-                    float disp = sin(factor * 3.14159265) * 0.065 * uHover * uIntensity;
-                    vec2 dir = normalize(uv - m + vec2(0.0001));
-                    uv -= dir * disp;
-                }
-
-                // GLSL SDF Rounded Box Corner Clipping (100% exact frame fit with smooth rounded corners!)
-                vec2 p = vUv - vec2(0.5);
-                vec2 d = abs(p) - vec2(0.5) + vec2(0.04);
-                float sdf = min(max(d.x, d.y), 0.0) + length(max(d, 0.0)) - 0.04;
-                if (sdf > 0.0) {
-                    discard;
-                }
+                vec2 p = uv - vec2(0.5);
+                float d = roundedBoxSDF(p, vec2(0.49, 0.49), 0.04);
+                if (d > 0.0) discard;
 
                 vec4 color = texture2D(uTexture, uv);
                 gl_FragColor = color;
@@ -1497,13 +1483,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const textureLoader = new THREE.TextureLoader();
 
-        // 1. Setup project image wraps in Selected Work and Showreel poster
         const interactiveWraps = document.querySelectorAll('.project-card .project-image-wrap, .showreel-poster');
         interactiveWraps.forEach((wrap) => {
             const img = wrap.querySelector('.project-image, .showreel-img');
             if (!img) return;
 
-            // Remove any previous canvas
             const oldCanvas = wrap.querySelector('.webgl-lens-canvas');
             if (oldCanvas) oldCanvas.remove();
 
@@ -1523,11 +1507,6 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasEl.width = width;
             canvasEl.height = height;
 
-            // Showreel poster gets 50% effect intensity (0.5) and small radius (0.28). Project cards get full (1.0) and wide radius (0.65).
-            const isShowreel = containerEl.classList.contains('showreel-poster') || containerEl.closest('.showreel-inner') !== null;
-            const effectIntensity = isShowreel ? 0.5 : 1.0;
-            const effectRadius = isShowreel ? 0.28 : 0.65;
-
             let aspect = (width / height) || (16 / 9);
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100);
@@ -1538,21 +1517,19 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             if (THREE.sRGBEncoding) renderer.outputEncoding = THREE.sRGBEncoding;
 
+            let planeGeom = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
             const shaderMat = new THREE.ShaderMaterial({
                 vertexShader: meshBendingVertexShader,
                 fragmentShader: meshBendingFragmentShader,
                 uniforms: {
                     uTexture: { value: null },
                     uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-                    uHover: { value: 0.0 },
-                    uIntensity: { value: effectIntensity },
-                    uRadius: { value: effectRadius }
+                    uHover: { value: 0.0 }
                 },
                 side: THREE.DoubleSide,
                 transparent: true
             });
 
-            let planeGeom = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
             const mesh = new THREE.Mesh(planeGeom, shaderMat);
             scene.add(mesh);
 
@@ -1576,10 +1553,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return false;
             };
 
-            // HTML image stays 100% visible at rest! WebGL canvas overlays on hover!
-            imgEl.style.opacity = '1';
-            canvasEl.style.opacity = '0';
-
             textureLoader.load(
                 imgEl.src,
                 (loadedTex) => {
@@ -1588,10 +1561,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     shaderMat.uniforms.uTexture.value = loadedTex;
                     isLoaded = true;
                     updateDimensions();
+                    renderer.render(scene, camera);
+                    canvasEl.style.opacity = '1';
+                    imgEl.style.opacity = '0';
                 },
                 undefined,
                 (err) => {
                     console.warn('WebGL texture load fallback:', imgEl.src, err);
+                    imgEl.style.opacity = '1';
+                    canvasEl.style.opacity = '0';
                 }
             );
 
@@ -1603,9 +1581,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if ('IntersectionObserver' in window) {
                 const lensObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => { 
-                        isLensVisible = entry.isIntersecting;
-                    });
+                    entries.forEach(entry => { isLensVisible = entry.isIntersecting; });
                 });
                 lensObserver.observe(containerEl);
             }
@@ -1621,15 +1597,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetMouse.x = mouseX / rect.width;
                 targetMouse.y = 1.0 - (mouseY / rect.height);
                 targetHover = 1.0;
-                if (isLoaded) canvasEl.style.opacity = '1';
             }
 
             parentCard.addEventListener('mousemove', onPointerMove);
             parentCard.addEventListener('mouseenter', onPointerMove);
-            parentCard.addEventListener('mouseleave', () => { 
-                targetHover = 0.0;
-                canvasEl.style.opacity = '0';
-            });
+            parentCard.addEventListener('mouseleave', () => { targetHover = 0.0; });
 
             function renderLoop() {
                 requestAnimationFrame(renderLoop);
@@ -1638,13 +1610,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 updateDimensions();
 
-                currentHover += (targetHover - currentHover) * 0.12;
-                currentMouse.lerp(targetMouse, 0.14);
-
-                if (targetHover === 0 && currentHover < 0.002) {
-                    canvasEl.style.opacity = '0';
-                    return;
-                }
+                currentHover += (targetHover - currentHover) * 0.1;
+                currentMouse.lerp(targetMouse, 0.1);
 
                 shaderMat.uniforms.uHover.value = currentHover;
                 shaderMat.uniforms.uMouse.value.copy(currentMouse);
