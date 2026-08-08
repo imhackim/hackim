@@ -1483,7 +1483,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const textureLoader = new THREE.TextureLoader();
 
-        const interactiveWraps = document.querySelectorAll('.project-card .project-image-wrap, .showreel-poster');
+        const interactiveWraps = document.querySelectorAll('.project-card .project-image-wrap');
         interactiveWraps.forEach((wrap) => {
             const img = wrap.querySelector('.project-image, .showreel-img');
             if (!img) return;
