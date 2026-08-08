@@ -29,8 +29,8 @@
     <!-- Non-blocking Google Fonts: load async via media swap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap"></noscript>
-    <link rel="preload" href="css/style.css" as="style">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" href="css/style.css?v=2" as="style">
+    <link rel="stylesheet" href="css/style.css?v=2">
     <style>
         /* Smooth Font Anti-Aliasing & Fix Arabic Letter Gaps (Photoshop Smooth Equivalent) */
         html[dir="rtl"], body[dir="rtl"], [dir="rtl"] * {
@@ -1037,7 +1037,7 @@
     <!-- Lenis Smooth Scroll (10KB — critical for UX, keep defer) -->
     <script src="libs/lenis.min.js" defer></script>
     <!-- Main Script (defer — runs after DOM parse) -->
-    <script src="js/script.js" defer></script>
+    <script src="js/script.js?v=3" defer></script>
 
     <!-- Lazy-load Three.js + GLTFLoader + 3D Logo Data only when user scrolls near About section -->
     <script>
