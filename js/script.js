@@ -1501,8 +1501,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Main lens displacement
                     coverUv -= dir * disp;
 
-                    // Chromatic Aberration RGB Shift (Red shifts outward, Blue shifts inward)
-                    float rgbOffset = disp * 1.85;
+                    // Chromatic Aberration RGB Shift (Reduced by 50% for subtle cinematic feel)
+                    float rgbOffset = disp * 0.92;
                     uvR = coverUv - dir * rgbOffset;
                     uvG = coverUv;
                     uvB = coverUv + dir * rgbOffset;
