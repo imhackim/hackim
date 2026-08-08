@@ -1434,27 +1434,27 @@ document.addEventListener('DOMContentLoaded', () => {
         animate3D();
     };
 
-    // ==================== INTERACTIVE WEBGL 3D MESH BENDING (EXACT MATCH TO PORTFOLIO.HTML) ====================
+    // ==================== INTERACTIVE WEBGL 3D MESH BENDING & MAGNIFY (FULL FRAME + OBJECT-FIT COVER) ====================
     const initWebGLImageLensEffect = () => {
         if (typeof THREE === 'undefined' || window.innerWidth <= 768) return;
 
-        // Subtle & refined mesh bending shaders (100% exact match to portfolio.html)
         const meshBendingVertexShader = `
             uniform vec2 uMouse;
             uniform float uHover;
+            uniform float uIntensity;
             varying vec2 vUv;
 
             void main() {
                 vUv = uv;
                 vec3 pos = position;
 
-                // Subtle & refined vertex bending intensity
+                // 3D Mesh bending deformation
                 float distToMouse = distance(uv, uMouse);
-                float mouseInfluence = smoothstep(0.65, 0.0, distToMouse) * uHover;
+                float mouseInfluence = smoothstep(0.65, 0.0, distToMouse) * uHover * uIntensity;
                 
-                pos.z += mouseInfluence * 0.15;
-                pos.x += (uv.x - uMouse.x) * mouseInfluence * 0.08;
-                pos.y += (uv.y - uMouse.y) * mouseInfluence * 0.08;
+                pos.z += mouseInfluence * 0.18;
+                pos.x += (uv.x - uMouse.x) * mouseInfluence * 0.10;
+                pos.y += (uv.y - uMouse.y) * mouseInfluence * 0.10;
 
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
             }
@@ -1462,6 +1462,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const meshBendingFragmentShader = `
             uniform sampler2D uTexture;
+            uniform vec2 uMouse;
+            uniform float uHover;
+            uniform float uIntensity;
+            uniform float uContainerAspect;
+            uniform float uImageAspect;
             varying vec2 vUv;
 
             float roundedBoxSDF(vec2 p, vec2 b, float r) {
@@ -1472,18 +1477,37 @@ document.addEventListener('DOMContentLoaded', () => {
             void main() {
                 vec2 uv = vUv;
 
+                // GPU object-fit: cover math (prevents any image stretching on any aspect ratio!)
+                vec2 st = uv - vec2(0.5);
+                if (uContainerAspect > uImageAspect) {
+                    st.y *= uImageAspect / uContainerAspect;
+                } else {
+                    st.x *= uContainerAspect / uImageAspect;
+                }
+                vec2 coverUv = st + vec2(0.5);
+
+                // Refined optical magnify lens distortion on hover
+                float dist = distance(uv, uMouse);
+                if (dist < 0.55 && uHover > 0.001) {
+                    float factor = (1.0 - dist / 0.55);
+                    float disp = sin(factor * 3.14159265) * 0.045 * uHover * uIntensity;
+                    vec2 dir = normalize(uv - uMouse + vec2(0.0001));
+                    coverUv -= dir * disp;
+                }
+
+                // Smooth SDF corner clipping to fill 100% of container frame
                 vec2 p = uv - vec2(0.5);
-                float d = roundedBoxSDF(p, vec2(0.49, 0.49), 0.04);
+                float d = roundedBoxSDF(p, vec2(0.5, 0.5), 0.04);
                 if (d > 0.0) discard;
 
-                vec4 color = texture2D(uTexture, uv);
+                vec4 color = texture2D(uTexture, coverUv);
                 gl_FragColor = color;
             }
         `;
 
         const textureLoader = new THREE.TextureLoader();
 
-        const interactiveWraps = document.querySelectorAll('.project-card .project-image-wrap');
+        const interactiveWraps = document.querySelectorAll('.project-card .project-image-wrap, .showreel-poster');
         interactiveWraps.forEach((wrap) => {
             const img = wrap.querySelector('.project-image, .showreel-img');
             if (!img) return;
@@ -1507,24 +1531,30 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasEl.width = width;
             canvasEl.height = height;
 
+            const isShowreel = containerEl.classList.contains('showreel-poster') || containerEl.closest('.showreel-inner') !== null;
+            const effectIntensity = isShowreel ? 0.75 : 1.0;
+
             let aspect = (width / height) || (16 / 9);
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100);
-            camera.position.z = 2.414;
+            camera.position.z = 2.38;
 
             const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, antialias: true, alpha: true });
             renderer.setSize(width, height);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             if (THREE.sRGBEncoding) renderer.outputEncoding = THREE.sRGBEncoding;
 
-            let planeGeom = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
+            let planeGeom = new THREE.PlaneGeometry(2 * aspect * 1.015, 2.03, 32, 32);
             const shaderMat = new THREE.ShaderMaterial({
                 vertexShader: meshBendingVertexShader,
                 fragmentShader: meshBendingFragmentShader,
                 uniforms: {
                     uTexture: { value: null },
                     uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-                    uHover: { value: 0.0 }
+                    uHover: { value: 0.0 },
+                    uIntensity: { value: effectIntensity },
+                    uContainerAspect: { value: aspect },
+                    uImageAspect: { value: 16 / 9 }
                 },
                 side: THREE.DoubleSide,
                 transparent: true
@@ -1545,8 +1575,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     camera.aspect = aspect;
                     camera.updateProjectionMatrix();
                     renderer.setSize(width, height);
+                    shaderMat.uniforms.uContainerAspect.value = aspect;
                     if (mesh.geometry) mesh.geometry.dispose();
-                    planeGeom = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
+                    planeGeom = new THREE.PlaneGeometry(2 * aspect * 1.015, 2.03, 32, 32);
                     mesh.geometry = planeGeom;
                     return true;
                 }
@@ -1559,6 +1590,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (THREE.sRGBEncoding) loadedTex.encoding = THREE.sRGBEncoding;
                     loadedTex.needsUpdate = true;
                     shaderMat.uniforms.uTexture.value = loadedTex;
+                    if (loadedTex.image && loadedTex.image.width && loadedTex.image.height) {
+                        shaderMat.uniforms.uImageAspect.value = loadedTex.image.width / loadedTex.image.height;
+                    }
                     isLoaded = true;
                     updateDimensions();
                     renderer.render(scene, camera);
