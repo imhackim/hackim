@@ -1528,7 +1528,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const effectIntensity = isShowreel ? 0.5 : 1.0;
             const effectRadius = isShowreel ? 0.28 : 0.65;
 
-            let aspect = width / height;
+            let aspect = (width / height) || (16 / 9);
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100);
             camera.position.z = 2.414;
@@ -1552,17 +1552,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 transparent: true
             });
 
-            const planeGeom = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
+            let planeGeom = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
             const mesh = new THREE.Mesh(planeGeom, shaderMat);
             scene.add(mesh);
 
-            textureLoader.load(imgEl.src, (loadedTex) => {
-                if (THREE.sRGBEncoding) loadedTex.encoding = THREE.sRGBEncoding;
-                loadedTex.needsUpdate = true;
-                shaderMat.uniforms.uTexture.value = loadedTex;
-                canvasEl.style.opacity = '1';
-                imgEl.style.opacity = '0'; // Seamless takeover by 3D WebGL Canvas
-            });
+            let isLoaded = false;
+
+            const updateDimensions = () => {
+                const currentW = containerEl.clientWidth;
+                const currentH = containerEl.clientHeight;
+                if (currentW > 0 && currentH > 0 && (currentW !== width || currentH !== height)) {
+                    width = currentW;
+                    height = currentH;
+                    aspect = width / height;
+                    camera.aspect = aspect;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(width, height);
+                    if (mesh.geometry) mesh.geometry.dispose();
+                    planeGeom = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
+                    mesh.geometry = planeGeom;
+                    return true;
+                }
+                return false;
+            };
+
+            // HTML image stays 100% visible at rest! WebGL canvas overlays on hover!
+            imgEl.style.opacity = '1';
+            canvasEl.style.opacity = '0';
+
+            textureLoader.load(
+                imgEl.src,
+                (loadedTex) => {
+                    if (THREE.sRGBEncoding) loadedTex.encoding = THREE.sRGBEncoding;
+                    loadedTex.needsUpdate = true;
+                    shaderMat.uniforms.uTexture.value = loadedTex;
+                    isLoaded = true;
+                    updateDimensions();
+                },
+                undefined,
+                (err) => {
+                    console.warn('WebGL texture load fallback:', imgEl.src, err);
+                }
+            );
 
             let targetHover = 0.0;
             let currentHover = 0.0;
@@ -1572,7 +1603,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if ('IntersectionObserver' in window) {
                 const lensObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => { isLensVisible = entry.isIntersecting; });
+                    entries.forEach(entry => { 
+                        isLensVisible = entry.isIntersecting;
+                    });
                 });
                 lensObserver.observe(containerEl);
             }
@@ -1588,38 +1621,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetMouse.x = mouseX / rect.width;
                 targetMouse.y = 1.0 - (mouseY / rect.height);
                 targetHover = 1.0;
+                if (isLoaded) canvasEl.style.opacity = '1';
             }
 
             parentCard.addEventListener('mousemove', onPointerMove);
-            parentCard.addEventListener('mouseleave', () => { targetHover = 0.0; });
+            parentCard.addEventListener('mouseenter', onPointerMove);
+            parentCard.addEventListener('mouseleave', () => { 
+                targetHover = 0.0;
+                canvasEl.style.opacity = '0';
+            });
 
             function renderLoop() {
                 requestAnimationFrame(renderLoop);
 
-                if (!isLensVisible) return;
+                if (!isLensVisible || !isLoaded) return;
+
+                updateDimensions();
+
+                currentHover += (targetHover - currentHover) * 0.12;
+                currentMouse.lerp(targetMouse, 0.14);
+
                 if (targetHover === 0 && currentHover < 0.002) {
-                    if (currentHover > 0) {
-                        currentHover = 0;
-                        shaderMat.uniforms.uHover.value = 0;
-                        renderer.render(scene, camera);
-                    }
+                    canvasEl.style.opacity = '0';
                     return;
                 }
-
-                const currentW = containerEl.clientWidth;
-                const currentH = containerEl.clientHeight;
-                if (currentW > 0 && currentH > 0 && (currentW !== width || currentH !== height)) {
-                    width = currentW;
-                    height = currentH;
-                    aspect = width / height;
-                    camera.aspect = aspect;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(width, height);
-                    mesh.geometry.dispose();
-                    mesh.geometry = new THREE.PlaneGeometry(2 * aspect, 2.0, 32, 32);
-                }
-
-                currentMouse.lerp(targetMouse, 0.14);
 
                 shaderMat.uniforms.uHover.value = currentHover;
                 shaderMat.uniforms.uMouse.value.copy(currentMouse);
