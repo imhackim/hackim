@@ -6,43 +6,73 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; frame-src https:; connect-src 'self' https:;">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload critical fonts for faster FCP/LCP -->
-    <link rel="preload" href="fonts/Palestine.ttf" as="font" type="font/woff2" crossorigin>
+    <!-- Preload critical fonts -->
     <link rel="preload" href="fonts/SF-Pro.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Callgest-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="images/WordMark.webp" as="image">
     <link rel="preload" href="images/project1.webp" as="image" type="image/webp">
-    <title>أحمد حكيم — أرت ديريكتور ومخرج إبداعي</title>
-    <meta name="description" content="شخصية انطوائية بخيال واسع وجنون إبداعي مالوش حدود.">
-    <meta property="og:title" content="أحمد حكيم — أرت ديريكتور ومخرج إبداعي">
-    <meta property="og:description" content="شخصية انطوائية بخيال واسع وجنون إبداعي مالوش حدود.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="images/profile.webp">
-    <meta property="og:url" content="https://ahmedhackim.com/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="أحمد حكيم | أرت ديريكتور ومخرج إبداعي">
-    <meta name="twitter:description" content="البورتفوليو الرسمي لأحمد حكيم — إعلانات تجارية، حملات فاشون، أرت ديريكشن، وفيديو كليبات.">
-    <meta name="twitter:image" content="images/profile.webp">
-    <link rel="canonical" href="https://ahmedhackim.com/">
-    <meta name="theme-color" content="#0A0A0A">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="apple-touch-icon" href="images/favicon.png">
-    <!-- Non-blocking Google Fonts: load async via media swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap"></noscript>
     <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        @font-face {
+            font-family: 'Callgest';
+            src: url('fonts/Callgest-Regular.woff2') format('woff2'),
+                 url('fonts/Callgest-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+            unicode-range: U+0000-052F, U+1E00-1EFF, U+2000-2BFF, U+FF00-FFEF;
+        }
+
+        @font-face {
+            font-family: 'Thmanyah';
+            src: url('fonts/thmanyah.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         /* Smooth Font Anti-Aliasing & Fix Arabic Letter Gaps (Photoshop Smooth Equivalent) */
-        html[dir="rtl"], body[dir="rtl"], [dir="rtl"] * {
+        html[dir="rtl"], body[dir="rtl"], [dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] .project-tagline, [dir="rtl"] .client-desc, [dir="rtl"] .skill-desc, [dir="rtl"] .work-desc, [dir="rtl"] .experience-desc, [dir="rtl"] .about-desc, [dir="rtl"] .contact-desc, [dir="rtl"] .history-company, [dir="rtl"] .social-link-text, [dir="rtl"] .footer-copyright, [dir="rtl"] button {
+            font-family: 'Callgest', 'Thmanyah', system-ui, -apple-system, sans-serif !important;
+            letter-spacing: normal !important;
+            word-spacing: normal !important;
             -webkit-font-smoothing: antialiased !important;
             -moz-osx-font-smoothing: grayscale !important;
             text-rendering: optimizeLegibility !important;
-            letter-spacing: 0 !important;
-            -webkit-text-stroke: 0 !important;
             font-feature-settings: "liga" 1, "calt" 1, "kern" 1 !important;
-            font-variant-ligatures: common-ligatures contextual !important;
+            -webkit-text-stroke: 0px transparent !important;
+        }
+        [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] .hero-title, [dir="rtl"] .hero-line, [dir="rtl"] .motto-heading, [dir="rtl"] .clients-title, [dir="rtl"] .skill-title, [dir="rtl"] .history-title, [dir="rtl"] .project-title {
+            font-family: 'Callgest', 'Palestine', system-ui, sans-serif !important;
+        }
+        [dir="rtl"] .section-label {
+            font-family: 'Callgest', 'Palestine', system-ui, sans-serif !important;
+            font-size: clamp(1.4rem, 2.5vw, 2.2rem) !important;
+            font-weight: 700 !important;
+            color: #febd43 !important;
+            letter-spacing: 0.05em !important;
+            line-height: 1.35 !important;
         }
     </style>
+    <title>أحمد حكيم — آرت ديركتور ومُنتج إبداعي</title>
+    <meta name="description" content="شخص انطوائي بخيال خيالي ومجنون وبصمة سينمائية مبهرة.">
+    <meta property="og:title" content="أحمد حكيم — آرت ديركتور ومُنتج إبداعي">
+    <meta property="og:description" content="شخص انطوائي بخيال خيالي ومجنون وبصمة سينمائية مبهرة.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://imhackim.com/images/Web-thumb.webp">
+    <meta property="og:image:secure_url" content="https://imhackim.com/images/Web-thumb.webp">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:url" content="https://imhackim.com/ar">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="أحمد حكيم | آرت ديركتور ومُنتج إبداعي">
+    <meta name="twitter:description" content="بورتفوليو سينمائي لأحمد حكيم — إعلانات، حملات أزياء، إخراج فني وفيديو كليبات.">
+    <meta name="twitter:image" content="https://imhackim.com/images/Web-thumb.webp">
+    <link rel="image_src" href="images/Web-thumb.webp">
+    <link rel="canonical" href="https://imhackim.com/ar">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
     <script>
         history.scrollRestoration = "manual";
     </script>
@@ -52,14 +82,14 @@
       "@type": "Person",
       "name": "Ahmed Hackim",
       "jobTitle": "Creative & Art Producer",
-      "url": "https://ahmedhackim.com",
-      "image": "images/profile.jpg",
+      "url": "https://imhackim.com/ar",
+      "image": "images/profile.webp",
       "sameAs": []
     }
     </script>
 </head>
 <body>
-    <a href="#main-content" class="skip-nav" style="position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#febd43;padding:12px 24px;z-index:99999;border-radius:0 0 8px 8px;font-size:14px;text-decoration:none;transition:top 0.3s ease;">تخطي إلى المحتوى</a>
+    <a href="#main-content" class="skip-nav" style="position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#febd43;padding:12px 24px;z-index:99999;border-radius:0 0 8px 8px;font-size:14px;text-decoration:none;transition:top 0.3s ease;">التخطي إلى المحتوى الرئيسي</a>
 
     <!-- ==================== CRT TV LOADING SCREEN ==================== -->
     <svg width="0" height="0" style="position:absolute; pointer-events:none; overflow:hidden;">
@@ -90,12 +120,17 @@
             </div>
             <div class="loader-notice-box" id="loaderNoticeBox">
                 <p class="loader-notice-text">
-                    لأفضل تجربة على الكمبيوتر أو اللابتوب، حرك الماوس على النصوص والعناصر التفاعلية.<br>
-                    على الموبايل أو التابلت، اضغط عليهم عشان تكتشف نفس التجربة.
+                    لو فاتح من الموبايل اقفل وافتح الويب سايت من اي لاب او كمبيوتر دلوقتي حالاً<br>
+                    وحرك الماوس يمين وشمال وتعالى على اي حاجة موجودة عشان هتنبسط :3
                 </p>
-                <button class="enter-btn magnetic-item" id="enterBtn" aria-label="Enter Experience">
-                    <span>دخول التجربة ↗</span>
-                </button>
+                <div class="enter-btn-wrapper">
+                    <div class="enter-btn-popup" id="enterBtnPopup" aria-hidden="true">
+                        <img src="images/t3ala.webp" alt="تعالى" class="enter-btn-popup-img">
+                    </div>
+                    <button class="enter-btn magnetic-item" id="enterBtn" aria-label="تعالى">
+                        <span>تعالى ↗</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -175,13 +210,13 @@
             <img decoding="async" src="images/WordMark.webp" alt="Hackim" class="logo-img" width="136" height="28" fetchpriority="high"></a>
         <nav class="header-nav">
             <ul class="nav-list">
-                <li class="nav-item"><a href="#work" class="nav-link magnetic-item" data-hover="Work"><span class="nav-link-default">المشاريع</span><span class="nav-link-alt">المشاريع</span></a></li>
-                <li class="nav-item"><a href="#about" class="nav-link magnetic-item" data-hover="About"><span class="nav-link-default">عني</span><span class="nav-link-alt">عني</span></a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link magnetic-item" data-hover="Contact"><span class="nav-link-default">تواصل</span><span class="nav-link-alt">تواصل</span></a></li>
+                <li class="nav-item"><a href="#work" class="nav-link magnetic-item" data-hover="بروجيكتات"><span class="nav-link-default">بروجيكتات</span><span class="nav-link-alt">بروجيكتات</span></a></li>
+                <li class="nav-item"><a href="#about" class="nav-link magnetic-item" data-hover="مين حكيم؟"><span class="nav-link-default">مين حكيم؟</span><span class="nav-link-alt">مين حكيم؟</span></a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link magnetic-item" data-hover="كلمني"><span class="nav-link-default">كلمني</span><span class="nav-link-alt">كلمني</span></a></li>
             </ul>
         </nav>
         <div class="header-lang">
-            <a href="index.html" aria-label="Language" class="lang-btn magnetic-item" id="langEn" style="text-decoration:none;">EN</a>
+            <a href="https://imhackim.com" aria-label="Language English" class="lang-btn magnetic-item" id="langEn" style="text-decoration:none;">EN</a>
             <span class="lang-divider">/</span>
             <button aria-label="Language" class="lang-btn active magnetic-item" id="langAr">AR</button>
         </div>
@@ -198,155 +233,192 @@
                 <div class="hero-grain"></div>
             </div>
             <div class="hero-content">
-                <p class="hero-subtitle anim-reveal" data-delay="0.2">Ahmed Hackim</p>
+                <p class="hero-subtitle anim-reveal" data-delay="0.2">أحمد حكيم</p>
                 <div class="hero-titles text-flip-zone">
                     <div class="text-flip-default">
                         <h1 class="hero-title">
                             <span class="hero-line anim-chars" data-delay="0.4">بعمل</span>
                             <span class="hero-line hero-line--bold anim-chars" data-delay="0.6"><strong>عشوائية منظمة</strong></span>
-                            <span class="hero-line anim-chars" data-delay="0.8">من سنة <bdi>2016</bdi></span>
+                            <span class="hero-line anim-chars" data-delay="0.8">من 2016</span>
                         </h1>
                     </div>
                     <div class="text-flip-alt">
                         <h2 class="hero-title">
-                            <span class="hero-line">مخبي حاجات كتير</span>
-                            <span class="hero-line hero-line--bold"><strong>عبثية في الدرج</strong></span>
+                            <span class="hero-line hero-line--bold"><strong>مخبي عبثيات</strong></span>
+                            <span class="hero-line hero-line--bold"><strong>في الدرج</strong></span>
+                            <span class="hero-line">من زمان!</span>
                         </h2>
                     </div>
-                    <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>اضغط للاكتشاف</span></button>
+                    <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>دوس عشان تكتشف</span></button>
                 </div>
             </div>
             <a href="#work" class="hero-scroll magnetic-item" aria-label="Scroll to Selected Work section">
+                <div class="hero-scroll-popup" aria-hidden="true">
+                    <img src="images/enzl.webp" alt="انزل تحت" class="hero-scroll-popup-img">
+                </div>
                 <div class="hero-scroll-capsule">
                     <span class="hero-scroll-dot"></span>
                 </div>
-                <span class="hero-scroll-text">انزل واكتشف</span>
+                <span class="hero-scroll-text">انزل تحت</span>
             </a>
         </section>
 
         <!-- ===== WORK / PROJECTS SECTION (SELECTED WORK) ===== -->
         <section class="work" id="work">
             <div class="container">
-                <p class="section-label anim-reveal">أعمال مختارة</p>
-                <div class="work-desc text-flip-zone has-eye-badge">
+                <p class="section-label anim-reveal">الشغل اللي اخترته</p>
+                <div class="work-desc text-flip-zone has-eye-badge" id="workDescZone">
+                    <div class="hover-follow-card" id="workHoverFollowCard" aria-hidden="true">
+                        <img src="images/neela.webp" alt="ولا تفكير ولا نيلة" class="hover-follow-img">
+                    </div>
                     <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                     </span>
-                    <p class="scroll-reveal-text text-flip-default">أكتر من سنين في تطوير المشهد البصري والتصوير بالتعاون مع أفضل الكوادر الإبداعية.</p>
-                    <p class="text-flip-alt">بقدم رؤية متكاملة لكل مشروع، عشان نضمن حلول بصريّة مبتكرة تفصيلاً لكل براند.</p>
-                    <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>اضغط للاكتشاف</span></button>
+                    <p class="scroll-reveal-text text-flip-default">في كل بروجيكت هنا هتلاقي رؤية، تفكير، إبداع، وكل حاجة متفصلة على كل كلاينت والبروجيكت بتاعه</p>
+                    <p class="text-flip-alt">ولا تفكير ولا نيلة، انا اشتغلت تحت ضغط عشان نطلع شغل تشوفه هنا والكلاينت يكون مبسوط</p>
+                    <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>دوس عشان تكتشف</span></button>
                 </div>
             </div> <!-- Close container for section header -->
 
             <div class="work-projects-container"> <!-- Full-screen width wrapper -->
             <div class="projects-grid">
                 <article class="project-card" data-project="01">
-                    <a href="#" class="project-link">
+                    <a href="https://vimeo.com/1047094716" target="_blank" rel="noopener noreferrer" class="project-link js-trigger-video-modal" data-video-src="https://player.vimeo.com/video/1047094716?autoplay=1">
                         <div class="project-image-wrap">
-                            <img src="images/project1.webp" alt="Cinematic Commercial Campaign" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
+                            <img src="images/Showreel-thumb.webp" alt="Showreel 2024-2025 Video" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
                             <div class="project-image-overlay"></div>
                         </div>
                         <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">01</span>
-                                <span class="project-category">إعلانات وأفلام تجارية</span>
-                                <span class="project-link-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
+                            <div class="project-title-row">
+                                <span class="project-link-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17L17 7"></path>
+                                        <path d="M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <div class="project-text-stack">
+                                    <h3 class="project-title">Showreel 2024-2025</h3>
+                                    <p class="project-tagline">Video</p>
+                                </div>
                             </div>
-                            <h3 class="project-title">فيلم تجاري سينمائي</h3>
-                            <p class="project-tagline">حملة إعلانية مبهرة بصرياً لبراند عربيات فخم</p>
                         </div>
                     </a>
                 </article>
 
                 <article class="project-card" data-project="02">
-                    <a href="#" class="project-link">
+                    <a href="https://vimeo.com/897863482" target="_blank" rel="noopener noreferrer" class="project-link js-trigger-video-modal" data-video-src="https://player.vimeo.com/video/897863482?autoplay=1">
                         <div class="project-image-wrap">
-                            <img src="images/project2.webp" alt="Art Exhibition Direction" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
+                            <img src="images/Narrative.webp" alt="Narrative Summit TV Promo" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
                             <div class="project-image-overlay"></div>
                         </div>
                         <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">02</span>
-                                <span class="project-category">أرت ديريكشن</span>
-                                <span class="project-link-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
+                            <div class="project-title-row">
+                                <span class="project-link-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17L17 7"></path>
+                                        <path d="M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <div class="project-text-stack">
+                                    <h3 class="project-title">Narrative Summit</h3>
+                                    <p class="project-tagline">TV Promo</p>
+                                </div>
                             </div>
-                            <h3 class="project-title">معرض فني معاصر</h3>
-                            <p class="project-tagline">رؤية فنية وإخراج بصري لمعرض فني راقي</p>
                         </div>
                     </a>
                 </article>
 
                 <article class="project-card" data-project="03">
-                    <a href="#" class="project-link">
+                    <a href="https://vimeo.com/992851468" target="_blank" rel="noopener noreferrer" class="project-link js-trigger-video-modal" data-video-src="https://player.vimeo.com/video/992851468?autoplay=1">
                         <div class="project-image-wrap">
-                            <img src="images/project3.webp" alt="Fashion Campaign" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
+                            <img src="images/Inspiroma.webp" alt="Inspiroma Video Teaser" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
                             <div class="project-image-overlay"></div>
                         </div>
                         <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">03</span>
-                                <span class="project-category">فاشون وأزياء</span>
-                                <span class="project-link-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
+                            <div class="project-title-row">
+                                <span class="project-link-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17L17 7"></path>
+                                        <path d="M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <div class="project-text-stack">
+                                    <h3 class="project-title">Inspiroma</h3>
+                                    <p class="project-tagline">Video Teaser</p>
+                                </div>
                             </div>
-                            <h3 class="project-title">حملة أزياء راقية</h3>
-                            <p class="project-tagline">حملة فاشون سينمائية لدار أزياء عالمية</p>
                         </div>
                     </a>
                 </article>
 
                 <article class="project-card" data-project="04">
-                    <a href="#" class="project-link">
+                    <a href="https://www.adsoftheworld.com/campaigns/home-comfort" target="_blank" rel="noopener noreferrer" class="project-link">
                         <div class="project-image-wrap">
-                            <img src="images/project4.webp" alt="Immersive Experience" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
+                            <img src="images/ElGhamry.webp" alt="ElGhamry Auto Visual" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
                             <div class="project-image-overlay"></div>
                         </div>
                         <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">04</span>
-                                <span class="project-category">تجارب تفاعلية</span>
-                                <span class="project-link-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
+                            <div class="project-title-row">
+                                <span class="project-link-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17L17 7"></path>
+                                        <path d="M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <div class="project-text-stack">
+                                    <h3 class="project-title">ElGhamry Auto</h3>
+                                    <p class="project-tagline">Visual</p>
+                                </div>
                             </div>
-                            <h3 class="project-title">معرض بصري تفاعلي</h3>
-                            <p class="project-tagline">تجهيز فني تفاعلي ضخم في مساحة سينمائية</p>
                         </div>
                     </a>
                 </article>
 
                 <article class="project-card" data-project="05">
-                    <a href="#" class="project-link">
+                    <a href="https://www.behance.net/gallery/163552723/Massar-Egbari" target="_blank" rel="noopener noreferrer" class="project-link">
                         <div class="project-image-wrap">
-                            <img src="images/project5.webp" alt="Live Event Production" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
+                            <img src="images/Massar.webp" alt="Massar Egbari Visual" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
                             <div class="project-image-overlay"></div>
                         </div>
                         <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">05</span>
-                                <span class="project-category">إخراج حفلات وفاعليات</span>
-                                <span class="project-link-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
+                            <div class="project-title-row">
+                                <span class="project-link-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17L17 7"></path>
+                                        <path d="M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <div class="project-text-stack">
+                                    <h3 class="project-title">Massar Egbari</h3>
+                                    <p class="project-tagline">Visual</p>
+                                </div>
                             </div>
-                            <h3 class="project-title">إنتاج مهرجان موسيقي</h3>
-                            <p class="project-tagline">تصميم مسرح ورؤية إبداعية لمهرجان موسيقي ضخم</p>
                         </div>
                     </a>
                 </article>
 
                 <article class="project-card" data-project="06">
-                    <a href="#" class="project-link">
+                    <a href="https://www.behance.net/gallery/187900607/Movement-Studio-Visual-identity" target="_blank" rel="noopener noreferrer" class="project-link">
                         <div class="project-image-wrap">
-                            <img src="images/project6.webp" alt="Music Video Production" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
+                            <img src="images/Movement.webp" alt="Movement Studio Branding" class="project-image" width="1376" height="768" loading="lazy" decoding="async">
                             <div class="project-image-overlay"></div>
                         </div>
                         <div class="project-info">
-                            <div class="project-meta">
-                                <span class="project-number">06</span>
-                                <span class="project-category">فيديو كليب</span>
-                                <span class="project-link-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>
+                            <div class="project-title-row">
+                                <span class="project-link-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17L17 7"></path>
+                                        <path d="M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <div class="project-text-stack">
+                                    <h3 class="project-title">Movement Studio</h3>
+                                    <p class="project-tagline">Branding</p>
+                                </div>
                             </div>
-                            <h3 class="project-title">أحلام النيون</h3>
-                            <p class="project-tagline">فيديو كليب بفكرة مستقبلية وإضاءات نيون سينمائية</p>
                         </div>
                     </a>
                 </article>
@@ -354,7 +426,7 @@
 
             <div class="work-footer anim-reveal">
                 <a href="portfolio.html" class="btn-see-more magnetic-item">
-                    <span class="btn-text">شوف باقي المشاريع ↗</span>
+                    <span class="btn-text">باقي البروجيكتات</span>
                     <span class="btn-arrow">
                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -379,7 +451,7 @@
                         </svg>
                         <span class="play-icon">▶</span>
                     </div>
-                    <span class="play-text">تشغيل الـ Showreel</span>
+                    <span class="play-text">شوف الشورييل</span>
                 </button>
             </div>
         </section>
@@ -387,48 +459,60 @@
         <!-- ===== CLIENTS I WORKED WITH SECTION ===== -->
         <section class="clients circle-reveal-section" id="clients">
             <div class="container">
-                <p class="section-label anim-reveal">الشراكات والعملاء</p>
                 <div class="clients-header">
-                    <h2 class="clients-title reveal-text">عملاء اشتغلت معاهم</h2>
+                    <h2 class="clients-title reveal-text">كلاينتس اشتغلت معاهم</h2>
                 </div>
+                <p class="section-label anim-reveal">عملت نيش، بس ينفع ناخد منه مش زي الأمهات</p>
                 <div class="clients-list">
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/ramadan.webp" alt="محمد رمضان" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">محمد رمضان (MR1)</h3>
-                        <p class="client-desc text-flip-alt">عملت إخراج وبصريات فخمة زي نمبر 1.. بس أنا مش مشهور زيّه لسه!</p>
+                        <h3 class="client-name text-flip-default">محمد رمضان <span dir="ltr">(MR1)</span></h3>
+                        <p class="client-desc text-flip-alt">اشتغلت لـ نمبر وان بس مقابلتهوش عشان كان فوووق.. (مسألة وقت)</p>
                         <img loading="lazy" decoding="async" src="images/clients/MR1.webp" class="client-logo" alt="MR1 Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/sperto.webp" alt="أبو عوف" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">أبو عوف (Abu Auf)</h3>
-                        <p class="client-desc text-flip-alt">صممت هويتهم البصرية، وحالياً 80% من دمي بقى قهوة من عندهم!</p>
+                        <h3 class="client-name text-flip-default">أبو عوف</h3>
+                        <p class="client-desc text-flip-alt">اشتغلت على شغل الموشن جرافيك سواء في شاشات الشوارع او السوشيال ميديا.. دمي كله بن يا عم الشيخ عتمان</p>
                         <img loading="lazy" decoding="async" src="images/clients/AbuAuf.webp" class="client-logo" alt="Abu Auf Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/abdelghafour.webp" alt="مسار إجباري" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">مسار إجباري (Massar Egbari)</h3>
-                        <p class="client-desc text-flip-alt">عملت مونتاج لمسار إجباري وأنا بسمع أغانيهم ريبيت 24 ساعة.</p>
+                        <h3 class="client-name text-flip-default">مسار إجباري</h3>
+                        <p class="client-desc text-flip-alt">لا مفيش عملت <span dir="ltr">Fan Art</span> بس وعجب جزء كبير من الباند</p>
                         <img loading="lazy" decoding="async" src="images/clients/Massar.webp" class="client-logo" alt="Massar Egbari Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/QNB.webp" alt="QNB" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -436,79 +520,82 @@
                             </svg>
                         </span>
                         <h3 class="client-name text-flip-default">بنك QNB الأهلي</h3>
-                        <p class="client-desc text-flip-alt">صممت إعلانات السوشيال ميديا والأوت دور بدون ما أفتح حساب عندهم!</p>
+                        <p class="client-desc text-flip-alt">اشتغلت على ديزاينات وكان ليا <span dir="ltr">billboards</span> في الشارع بس مش عندي حساب عندهم</p>
                         <img loading="lazy" decoding="async" src="images/clients/QNB.webp" class="client-logo" alt="QNB ALAHLI Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/clip.webp" alt="MS Production" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">جامعة النهضة (NUB)</h3>
-                        <p class="client-desc text-flip-alt">بنيت الميديا البصرية للجامعة، وبدون ما أحضر محاضرة واحدة!</p>
-                        <img loading="lazy" decoding="async" src="images/clients/NUB.webp" class="client-logo" alt="NUB Logo">
-                    </div>
-
-                    <div class="client-row text-flip-zone has-eye-badge">
-                        <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        </span>
-                        <h3 class="client-name text-flip-default">إم إس برودكشن (MS Production)</h3>
-                        <p class="client-desc text-flip-alt">صممت بريزنتاشن لأفلام عشان تاخد تمويل.. وعمري ما شفت الأفلام دي اتعرضت فين!</p>
+                        <h3 class="client-name text-flip-default">MS Production</h3>
+                        <p class="client-desc text-flip-alt">عملت بريزنتشين أفلام.. بس متفرجتش على فيلم واحد منهم</p>
                         <img loading="lazy" decoding="async" src="images/clients/MS.webp" class="client-logo" alt="MS Production Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/oscar.webp" alt="Bolt Film Production" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">بوللت برودكشن (Bolt Film)</h3>
-                        <p class="client-desc text-flip-alt">عملت براندينج لشركة إنتاج أفلام.. وعقبال الأوسكار إن شاء الله!</p>
+                        <h3 class="client-name text-flip-default">Bolt Film Production</h3>
+                        <p class="client-desc text-flip-alt">عملت براندينج للشركة عشان تبدأ.. مستني اتصور معاهم بالأوسكار</p>
                         <img loading="lazy" decoding="async" src="images/clients/BOLT.webp" class="client-logo" alt="Bolt Film Production Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/Portrait.webp" alt="Movement Studio" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">ستوديو موفمنت (Movement)</h3>
-                        <p class="client-desc text-flip-alt">عملت براندينج لستوديو تصوير، ولسه مستني السيشن البلاش بتاعي!</p>
+                        <h3 class="client-name text-flip-default">Movement Studio</h3>
+                        <p class="client-desc text-flip-alt">عملت براندينج ايدينتتي بس محدش عملي فري سيشن</p>
                         <img loading="lazy" decoding="async" src="images/clients/Movement.webp" class="client-logo" alt="Movement Studio Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/mcgyver.webp" alt="AutoOne" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">أوتو ون للسيارات (AutoOne)</h3>
-                        <p class="client-desc text-flip-alt">أخدت صور العربيات الثابتة في المعرض ونزلت بيها على الطريق الحقيقي!</p>
+                        <h3 class="client-name text-flip-default">AutoOne Automotive</h3>
+                        <p class="client-desc text-flip-alt">عملت <span dir="ltr">Manipulation</span> تتحط في مواقع العربيات رسمي.. بس مبعرفش اطلع بالعربية</p>
                         <img loading="lazy" decoding="async" src="images/clients/AutoOne.webp" class="client-logo" alt="AutoOne Logo">
                     </div>
 
                     <div class="client-row text-flip-zone has-eye-badge">
+                        <div class="hover-follow-card" aria-hidden="true">
+                            <img src="images/Shakal.webp" alt="Freedom Patisserie" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <h3 class="client-name text-flip-default">فريدوم باتيسري (Freedom)</h3>
-                        <p class="client-desc text-flip-alt">عملت مونتاج لفيديوهات حلويات شرقية وغربية، وزدت 5 كيلو من كتر الفرجة بس!</p>
+                        <h3 class="client-name text-flip-default">Freedom Patisserie</h3>
+                        <p class="client-desc text-flip-alt">عملت فيديوهات لبراند حلويات شاطر.. زدت 5 كيلو من اني بتفرج ع الفيديوهات</p>
                         <img loading="lazy" decoding="async" src="images/clients/Freedom.webp" class="client-logo" alt="Freedom Patisserie Logo">
                     </div>
                 </div>
@@ -523,9 +610,9 @@
                 <div class="motto-bg-overlay"></div>
             </div>
             <div class="motto-content">
-                <p class="motto-label anim-reveal">فلسفتي</p>
-                <h2 class="motto-heading reveal-text">Creativity<br>Takes Courage</h2>
-                <p class="motto-author anim-reveal">Ahmed Hackim</p>
+                <p class="motto-label anim-reveal">شِعاري</p>
+                <h2 class="motto-heading reveal-text">الإبداع<br>محتاج شجاعة</h2>
+                <p class="motto-author anim-reveal">أحمد حكيم</p>
             </div>
         </section>
 
@@ -537,36 +624,39 @@
             </div>
             <div class="container">
                 <div class="experience-intro">
-                    <p class="section-label anim-reveal">خبرتي والرحلة</p>
-                    <div class="experience-desc text-flip-zone has-eye-badge">
+                    <p class="section-label anim-reveal">خبرتي</p>
+                    <div class="experience-desc text-flip-zone has-eye-badge" id="experienceDescZone">
+                        <div class="hover-follow-card" id="experienceHoverFollowCard" aria-hidden="true">
+                            <img src="images/QNB.webp" alt="QNB" class="hover-follow-img">
+                        </div>
                         <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </span>
-                        <p class="scroll-reveal-text text-flip-default">I don't just pitch ideas; I <strong>بخرج، بمنتج، وبدقق</strong> over every single frame.</p>
-                        <p class="text-flip-alt">Basically a <strong>تيم كامل في شخص واحد</strong> running on caffeine & 4 Hours of sleep.</p>
-                        <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>اضغط للاكتشاف</span></button>
+                        <p class="scroll-reveal-text text-flip-default">أكتر من 10 سنين خبرة في الاعلانات والبرودكشن، اشتغلت مع ناس كبيرة في مجالي.</p>
+                        <p class="text-flip-alt">تنين مجنح لسه ال Ai مخدش مكانه (لحد دلوقتي) بيشتغل بشكل كويس لو البادجيت مناسبة..</p>
+                        <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>دوس عشان تكتشف</span></button>
                     </div>
                 </div>
 
                 <div class="experience-history">
-                    <p class="section-label anim-reveal">سجل الخبرات</p>
+                    <p class="section-label anim-reveal">شركات مبسوط اني اشتغلت فيها</p>
 
                     <div class="history-row text-flip-zone magnetic-item">
                         <div class="history-mask text-flip-default">
-                            <span class="history-year">2025 - حتّى الآن</span>
+                            <span class="history-year">2025 - الآن</span>
                             <div class="history-info">
-                                <h3 class="history-title">سينير ممنتج فيديو</h3>
-                                <p class="history-company">وكالة فور تي فور للتسويق (Forty Four)</p>
+                                <h3 class="history-title">Senior Video Editor</h3>
+                                <p class="history-company">Forty Four Marketing Agency</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
-                            <span class="history-year">أكتوبر 2025 - حتى الآن</span>
+                            <span class="history-year">أكتوبر 2025 - الآن</span>
                             <div class="history-info">
-                                <h3 class="history-title">أستاذ إخفاء القطعات بترانزيشنز سريعة وحوت التايم لاين</h3>
-                                <p class="history-company">وكالة فور تي فور للتسويق (Forty Four)</p>
+                                <h3 class="history-title">ماستر في ال <span dir="ltr">cuts</span> وبعمل <span dir="ltr">transitions</span> كتير عشان ابان اني مونتير جامد</h3>
+                                <p class="history-company">Forty Four Marketing Agency</p>
                             </div>
                         </div>
                     </div>
@@ -575,15 +665,15 @@
                         <div class="history-mask text-flip-default">
                             <span class="history-year">2024 - 2025</span>
                             <div class="history-info">
-                                <h3 class="history-title">مخرج وممنتج تنفيذي</h3>
-                                <p class="history-company">ستوديو روكي للإنتاج (Rocky Production)</p>
+                                <h3 class="history-title">Director & Post Producer</h3>
+                                <p class="history-company">Rocky Production</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
                             <span class="history-year">سبتمبر 2024 - أغسطس 2025</span>
                             <div class="history-info">
-                                <h3 class="history-title">تخصص "أمان كمان واحدة" وخبير "نظبطها في المونتاج"</h3>
-                                <p class="history-company">ستوديو روكي للإنتاج (Rocky Production)</p>
+                                <h3 class="history-title">استاذ في <span dir="ltr">one take for safe</span> و نبقى نحلها في البوست</h3>
+                                <p class="history-company">Rocky Production</p>
                             </div>
                         </div>
                     </div>
@@ -592,15 +682,15 @@
                         <div class="history-mask text-flip-default">
                             <span class="history-year">2023</span>
                             <div class="history-info">
-                                <h3 class="history-title">مصمم مصور ومحرر فيديو</h3>
-                                <p class="history-company">شو ميديا للإنتاج (Show Media)</p>
+                                <h3 class="history-title">Graphic Designer & Video editor</h3>
+                                <p class="history-company">Show Media Production</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
                             <span class="history-year">مايو 2023 - أغسطس 2023</span>
                             <div class="history-info">
-                                <h3 class="history-title">بفكر في باليتة الألوان بالنهار، وبظبط الكي-فرامز وبستنى شريط الريندر بالليل</h3>
-                                <p class="history-company">شو ميديا للإنتاج (Show Media)</p>
+                                <h3 class="history-title">الصبح ديزاينر وبالليل ايديتور.. مفيش نوم</h3>
+                                <p class="history-company">Show Media Production</p>
                             </div>
                         </div>
                     </div>
@@ -609,15 +699,15 @@
                         <div class="history-mask text-flip-default">
                             <span class="history-year">2023 - 2024</span>
                             <div class="history-info">
-                                <h3 class="history-title">مصمم موشن جرافيكس</h3>
-                                <p class="history-company">آر إم سي وورلد وايد (RMC Worldwide)</p>
+                                <h3 class="history-title">Motion Graphic Designer</h3>
+                                <p class="history-company">RMC Worldwide Partners</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
                             <span class="history-year">يونيو 2023 - مارس 2024</span>
                             <div class="history-info">
-                                <h3 class="history-title">مدمن كي-فرامز وتظبيط Easy-Ease</h3>
-                                <p class="history-company">آر إم سي وورلد وايد (RMC Worldwide)</p>
+                                <h3 class="history-title">اديها <span dir="ltr">Easy-Ease</span> وربع بن من أبو عوف</h3>
+                                <p class="history-company">RMC Worldwide Partners</p>
                             </div>
                         </div>
                     </div>
@@ -626,15 +716,15 @@
                         <div class="history-mask text-flip-default">
                             <span class="history-year">2023</span>
                             <div class="history-info">
-                                <h3 class="history-title">مدير ستوديو ومخرج</h3>
-                                <p class="history-company">ستوديو أوريل للإنتاج (Oriel)</p>
+                                <h3 class="history-title">Studio Operator & Director</h3>
+                                <p class="history-company">Oriel Production</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
                             <span class="history-year">يناير 2023 - مايو 2023</span>
                             <div class="history-info">
-                                <h3 class="history-title">بجيب قهوة وبفكر في أفكار عابرة للقارات وبدون أي ميزانية</h3>
-                                <p class="history-company">ستوديو أوريل للإنتاج (Oriel)</p>
+                                <h3 class="history-title">ممنوع حد يدخل الاستوديو او الكنترول روم</h3>
+                                <p class="history-company">Oriel Production</p>
                             </div>
                         </div>
                     </div>
@@ -643,15 +733,15 @@
                         <div class="history-mask text-flip-default">
                             <span class="history-year">2021</span>
                             <div class="history-info">
-                                <h3 class="history-title">سينير مصمم جرافيك</h3>
-                                <p class="history-company">براند نيو أدز (Brand New Ads)</p>
+                                <h3 class="history-title">Senior Graphic Designer</h3>
+                                <p class="history-company">Brand New Ads</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
                             <span class="history-year">فبراير 2021 - أكتوبر 2021</span>
                             <div class="history-info">
-                                <h3 class="history-title">بظبط البكسلات على الجريد وببتسم بلطافة قدام تعديلات العميل الغريبة</h3>
-                                <p class="history-company">براند نيو أدز (Brand New Ads)</p>
+                                <h3 class="history-title">بعمل نص الديزاين و بديه لل <span dir="ltr">finalizer</span> يقفله</h3>
+                                <p class="history-company">Brand New Ads</p>
                             </div>
                         </div>
                     </div>
@@ -660,15 +750,15 @@
                         <div class="history-mask text-flip-default">
                             <span class="history-year">2020</span>
                             <div class="history-info">
-                                <h3 class="history-title">سينير مصمم جرافيك</h3>
-                                <p class="history-company">ستوديو مشكاة (Meshkah Studio)</p>
+                                <h3 class="history-title">Junior Graphic Designer</h3>
+                                <p class="history-company">Meshkah Studio</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
                             <span class="history-year">أكتوبر 2020 - نوفمبر 2020</span>
                             <div class="history-info">
-                                <h3 class="history-title">بظبط البكسلات على الجريد وببتسم بلطافة قدام تعديلات العميل الغريبة</h3>
-                                <p class="history-company">ستوديو مشكاة (Meshkah Studio)</p>
+                                <h3 class="history-title">احنا بنعمل ايه هنا²؟</h3>
+                                <p class="history-company">Meshkah Studio</p>
                             </div>
                         </div>
                     </div>
@@ -677,15 +767,32 @@
                         <div class="history-mask text-flip-default">
                             <span class="history-year">2019 - 2020</span>
                             <div class="history-info">
-                                <h3 class="history-title">جونيور مصمم جرافيك</h3>
-                                <p class="history-company">شادو للدعاية والإعلان (Shadow)</p>
+                                <h3 class="history-title">Junior Graphic Designer</h3>
+                                <p class="history-company">Shadow For Advertising</p>
                             </div>
                         </div>
                         <div class="history-mask text-flip-alt">
                             <span class="history-year">أبريل 2019 - سبتمبر 2020</span>
                             <div class="history-info">
-                                <h3 class="history-title">بتعلم اختصارات الفوتوشوب، وبكّبر اللوجو، وأستاذ في رد "ممكن نكبر اللوجو شوية؟"</h3>
-                                <p class="history-company">شادو للدعاية والإعلان (Shadow)</p>
+                                <h3 class="history-title">احنا بنعمل ايه هنا؟</h3>
+                                <p class="history-company">Shadow For Advertising</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="history-row text-flip-zone magnetic-item">
+                        <div class="history-mask text-flip-default">
+                            <span class="history-year">2016 - 2019</span>
+                            <div class="history-info">
+                                <h3 class="history-title">على الله ان شاء الله</h3>
+                                <p class="history-company">Freelance & Self Learning</p>
+                            </div>
+                        </div>
+                        <div class="history-mask text-flip-alt">
+                            <span class="history-year">2016 - 2019</span>
+                            <div class="history-info">
+                                <h3 class="history-title">والله يابني ما انا عارف</h3>
+                                <p class="history-company">Freelance & Self Learning</p>
                             </div>
                         </div>
                     </div>
@@ -700,17 +807,17 @@
                     <div class="about-profile-column">
                         <div class="about-profile-card hold-to-color-zone" id="aboutProfileCard">
                             <div class="about-profile-img-wrap">
-                                <img src="images/profile.webp" alt="Ahmed Hackim - Art Director" class="about-profile-img about-profile-bw" width="800" height="1000" loading="lazy" decoding="async">
-                                <img src="images/profile.webp" alt="Ahmed Hackim - Art Director Color" class="about-profile-img about-profile-color" id="profileColorImg" width="800" height="1000" loading="lazy" decoding="async">
+                                <img src="images/profile.webp" alt="أحمد حكيم - آرت ديركتور" class="about-profile-img about-profile-bw" width="800" height="1000" loading="lazy" decoding="async">
+                                <img src="images/profile.webp" alt="أحمد حكيم - آرت ديركتور ألوان" class="about-profile-img about-profile-color" id="profileColorImg" width="800" height="1000" loading="lazy" decoding="async">
                             </div>
                             <div class="about-profile-hint">
                                 <span class="hint-dot"></span>
-                                <span class="hint-text" id="profileHintText">اضغط ولون الصورة</span>
+                                <span class="hint-text" id="profileHintText">دوس ودوس عشان تلون الصورة</span>
                             </div>
                         </div>
                     </div>
                     <div class="about-text-column">
-                        <p class="section-label anim-reveal">عني</p>
+                        <p class="section-label anim-reveal">مين حكيم؟</p>
                         <div class="about-desc text-flip-zone has-eye-badge">
                             <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                                 <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -718,9 +825,9 @@
                                     <circle cx="12" cy="12" r="3"></circle>
                                 </svg>
                             </span>
-                            <p class="scroll-reveal-text text-flip-default">أرت ديريكتور <strong>غير تقليدي بمزاجه</strong>، بياخد باله من أصغر التفاصيل اللي بتحصل حواليه</p>
-                            <p class="text-flip-alt">أرت ديريكتور <strong>بيوفرثينك بالصدفة</strong>، وبيهتم بتفاصيل ما حدش طلبها منه اصلاً</p>
-                            <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>اضغط للاكتشاف</span></button>
+                            <p class="scroll-reveal-text text-flip-default">كرييتف بروديوسر، خبرة أكتر من 10 سنين بيحب التفاصيل و بيهتم بيها<br>ما تيجي اعملك <span dir="ltr">Collage Art</span> ؟</p>
+                            <p class="text-flip-alt">بقالي 3 سنين لسه بشوف أنا مين، والباقي لسه مش عارف برضو<br>بس بحب اطلع حاجات تتشاف</p>
+                            <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>دوس عشان تكتشف</span></button>
                         </div>
                     </div>
                     <div class="about-3d-canvas-container" id="about3dContainer" aria-hidden="true">
@@ -729,84 +836,84 @@
                 </div>
 
                 <div class="about-skills">
-                    <p class="section-label anim-reveal">أنا بعمل إيه</p>
+                    <p class="section-label anim-reveal">بعمل ايه؟</p>
                     
-                    <div class="skill-row" data-skill="Designing">
+                    <div class="skill-row" data-skill="Graphic Design">
                         <div class="skill-header">
                             <div class="skill-mask">
-                                <h2 class="skill-title mask-text">التصميم البصري</h2>
-                                <h2 class="skill-title mask-text--reveal">التصميم البصري</h2>
+                                <h2 class="skill-title mask-text">جرافيك ديزاين</h2>
+                                <h2 class="skill-title mask-text--reveal">جرافيك ديزاين</h2>
                             </div>
                             <span class="skill-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </span>
                         </div>
-                        <p class="skill-desc">بدمج قواعد البراندينج مع دمج صور مجنون واستراتيجية إعلانات عشان أطلع بوست السوشيال ميديا كأنه بوستر فيلم سينمائي.</p>
+                        <p class="skill-desc">بشتغل على الديزاين كأنه <span dir="ltr">Artwork</span> و بظبطه مع ال <span dir="ltr">Performance</span> عشان يظبط في الريتش او ال <span dir="ltr">Ads</span>.. بعدين التعديلات تبوظه</p>
                     </div>
 
-                    <div class="skill-row" data-skill="Storyboarding & Shootlists">
+                    <div class="skill-row" data-skill="Storyboarding">
                         <div class="skill-header">
                             <div class="skill-mask">
-                                <h2 class="skill-title mask-text">الستوري بورد وقوائم التصوير</h2>
-                                <h2 class="skill-title mask-text--reveal">الستوري بورد وقوائم التصوير</h2>
+                                <h2 class="skill-title mask-text">ستوري بوردينج</h2>
+                                <h2 class="skill-title mask-text--reveal">ستوري بوردينج</h2>
                             </div>
                             <span class="skill-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </span>
                         </div>
-                        <p class="skill-desc">بحول أفكار المخرج التجريدية لخارطة طريق بصرية عشان التيم يبطل يسأل "إيه الخطة؟" كل 5 دقائق.</p>
+                        <p class="skill-desc">شوية شخابيط عشان نحاول نسلّك الأفكار اللي بين المخرج ومدير التصوير وباقي الكرو</p>
                     </div>
 
-                    <div class="skill-row" data-skill="Producing">
+                    <div class="skill-row" data-skill="Producing & Directing">
                         <div class="skill-header">
                             <div class="skill-mask">
-                                <h2 class="skill-title mask-text">الإنتاج والتنفيذ</h2>
-                                <h2 class="skill-title mask-text--reveal">الإنتاج والتنفيذ</h2>
+                                <h2 class="skill-title mask-text">إدارة الإنتاج والإخراج</h2>
+                                <h2 class="skill-title mask-text--reveal">إدارة الإنتاج والإخراج</h2>
                             </div>
                             <span class="skill-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </span>
                         </div>
-                        <p class="skill-desc">بحول زعر العميل والديدلاين المستحيل وطلبات الميزانية المعدومة لقائمة تسليمات حقيقية على أرض الواقع.</p>
+                        <p class="skill-desc">بهندل كلكعة التصوير وضغط الكلاينت في الديدلاين عشان نطلع الشغل نجيب <span dir="ltr">200 View</span> مستريح</p>
                     </div>
 
                     <div class="skill-row" data-skill="Shooting">
                         <div class="skill-header">
                             <div class="skill-mask">
-                                <h2 class="skill-title mask-text">التصوير الإخراجي</h2>
-                                <h2 class="skill-title mask-text--reveal">التصوير الإخراجي</h2>
+                                <h2 class="skill-title mask-text">تصوير</h2>
+                                <h2 class="skill-title mask-text--reveal">تصوير</h2>
                             </div>
                             <span class="skill-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </span>
                         </div>
-                        <p class="skill-desc">باخد "واحدة كمان للأمان"، وبحارب الضوء الطبيعي، وبثق إن سحر الـ Post-Production هينقذ الموقف.</p>
+                        <p class="skill-desc">شوية <span dir="ltr">one take for safe</span> من غير <span dir="ltr">noise</span> عشان المونتير مايشتمنيش</p>
                     </div>
 
                     <div class="skill-row" data-skill="Editing">
                         <div class="skill-header">
                             <div class="skill-mask">
-                                <h2 class="skill-title mask-text">المونتاج والقصص البصرية</h2>
-                                <h2 class="skill-title mask-text--reveal">المونتاج والقصص البصرية</h2>
+                                <h2 class="skill-title mask-text">مونتاج</h2>
+                                <h2 class="skill-title mask-text--reveal">مونتاج</h2>
                             </div>
                             <span class="skill-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </span>
                         </div>
-                        <p class="skill-desc">بخفي القطعات الغريبة، وبظبط الصوت بالبركة، وبخلي 50 جيجا كراكيب فوتيدج تطلع حدوتة سينمائية.</p>
+                        <p class="skill-desc">شوية <span dir="ltr">speed cuts</span> على شوية <span dir="ltr">SFX</span> من <span dir="ltr">200GB</span> ماتريال عشان اللي بيتفرج يقفل الفيديو من أول 5 ثواني</p>
                     </div>
 
-                    <div class="skill-row" data-skill="Motion">
+                    <div class="skill-row" data-skill="Motion Graphics">
                         <div class="skill-header">
                             <div class="skill-mask">
-                                <h2 class="skill-title mask-text">الموشن جرافيكس</h2>
-                                <h2 class="skill-title mask-text--reveal">الموشن جرافيكس</h2>
+                                <h2 class="skill-title mask-text">موشن جرافيك</h2>
+                                <h2 class="skill-title mask-text--reveal">موشن جرافيك</h2>
                             </div>
                             <span class="skill-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </span>
                         </div>
-                        <p class="skill-desc">بفضل أظبط في الـ FPS والـ Speed Curves بالساعات، وببين إن الحركة النظيفة دي اتعملت في ثانية بدون مجهود.</p>
+                        <p class="skill-desc">شوية موشن مع <span dir="ltr">bouncing</span> و <span dir="ltr">Fake 3D</span> على شوية <span dir="ltr">smooth motion</span> واهي ماشية</p>
                     </div>
                 </div>
             </div>
@@ -815,7 +922,7 @@
         <!-- ===== CONTACT SECTION ===== -->
         <section class="contact" id="contact">
             <div class="container">
-                <p class="section-label anim-reveal">يلا نتكلم</p>
+                <p class="section-label anim-reveal">ناخد خطوة؟</p>
                 <div class="contact-desc text-flip-zone has-eye-badge">
                     <span class="hover-eye-badge" aria-hidden="true" title="Hover to reveal text">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -823,9 +930,9 @@
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                     </span>
-                    <p class="scroll-reveal-text text-flip-default">عندك <strong>مشروع</strong> في بالك؟ يلا نصنع حاجة <strong>استثنائية</strong> مع بعض.</p>
-                    <p class="text-flip-alt">معاك <strong>ميزانية</strong>؟ تمام جداً. يلا نتكلم ونعمل نفسنا مش شايفين إن أول فكرة دايماً هي <strong>الأحسن</strong>.</p>
-                    <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>اضغط للاكتشاف</span></button>
+                    <p class="scroll-reveal-text text-flip-default">عندك بروجيكت في دماغك؟ يلا بينا نشوف هنوصل لإيه!</p>
+                    <p class="text-flip-alt">عندك بادجيت؟ يلا بينا نشتغل من دلوقتي!</p>
+                    <button class="text-flip-btn" aria-label="Toggle text view"><span class="flip-icon">↻</span> <span>دوس عشان تكتشف</span></button>
                 </div>
 
                 <div class="contact-grid">
@@ -840,8 +947,8 @@
                                             </svg>
                                         </span>
                                         <span class="social-text-box">
-                                            <span class="social-link-text text-flip-default">فيشوال ومونتاج</span>
-                                            <span class="social-link-text text-flip-alt">مونتاج محترف على مية بيضا</span>
+                                            <span class="social-link-text text-flip-default">Vimeo</span>
+                                            <span class="social-link-text text-flip-alt">فيديو ايديتور وكده</span>
                                         </span>
                                     </span>
                                     <span class="social-link-arrow">↗</span>
@@ -854,15 +961,15 @@
                                             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.988h6.953c5.476.081 6.506 5.437 3.631 8.004 3.518 2.41 2.296 6.984-4.118 6.984zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3h3.693c3.676 0 3.392-3-.302-3z"/></svg>
                                         </span>
                                         <span class="social-text-box">
-                                            <span class="social-link-text text-flip-default">بيهانس</span>
-                                            <span class="social-link-text text-flip-alt">لوحات وأعمال مجنونة</span>
+                                            <span class="social-link-text text-flip-default">Behance</span>
+                                            <span class="social-link-text text-flip-alt">آرتووركس وحركات</span>
                                         </span>
                                     </span>
                                     <span class="social-link-arrow">↗</span>
                                 </a>
                             </li>
                             <li class="social-item">
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="social-link text-flip-zone">
+                                <a href="https://imdb.com/name/nm16882672" target="_blank" rel="noopener noreferrer" class="social-link text-flip-zone">
                                     <span class="social-link-left">
                                         <span class="social-icon">
                                             <svg viewBox="0 0 575 289.83" width="24" height="24" fill="currentColor">
@@ -873,29 +980,29 @@
                                             </svg>
                                         </span>
                                         <span class="social-text-box">
-                                            <span class="social-link-text text-flip-default">آي إم دي بي</span>
-                                            <span class="social-link-text text-flip-alt">أفلام وإخراج عالي</span>
+                                            <span class="social-link-text text-flip-default">IMDb</span>
+                                            <span class="social-link-text text-flip-alt">وكأني فيلم ميكر</span>
                                         </span>
                                     </span>
                                     <span class="social-link-arrow">↗</span>
                                 </a>
                             </li>
                             <li class="social-item">
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="social-link text-flip-zone">
+                                <a href="https://elcinema.com/person/2347209" target="_blank" rel="noopener noreferrer" class="social-link text-flip-zone">
                                     <span class="social-link-left">
                                         <span class="social-icon">
                                             <svg viewBox="0 0 512 512" width="24" height="24" fill="currentColor">
                                                 <path d="M493.47,193.56c-4.78-6.93-11.33-13.77-17.41-19.73-2.42-2.36-50.04-49.97-142.87-142.79C313.56,11.41,287.83-.07,260.15-.63c-13.09-.27-25.67,1.95-37.74,6.65-8.6,3.36-16.67,7.68-24.18,12.98-4.11,2.9-10.87,9.06-20.29,18.49-45.13,45.15-86.39,86.43-123.78,123.82-5.88,5.87-15.86,16.4-24.6,25-10.14,9.98-17.74,21.68-22.8,35.11h-.01c-2.82,7.51-4.65,13.92-5.48,19.22-1.04,6.74-1.45,14.61-1.21,23.64.21,7.85,1.45,15.63,3.74,23.33,2.12,7.14,4.9,14.08,8.36,20.82,1.94,3.79,4.51,7.8,7.71,12.04,4.38,5.79,7.53,9.65,9.45,11.57,69.75,69.62,119.31,119.19,148.69,148.69,16.69,16.77,36.7,27.04,60.01,30.84,4.25.7,7.34.47,10.88.87,2.06.24,4.79.26,8.19.07,5.69-.31,9.12-.53,10.29-.67.31-.03.6-.09.89-.17,4.71-1.33,8.33-2.22,10.86-2.66,3.23-.56,6.06-1.91,9.42-2.99,2.72-.87,5.01-1.79,6.87-2.73,12.14-6.14,21.69-12.69,28.65-19.65,52.56-52.67,103.17-103.29,151.81-151.85,3.15-3.13,7.12-7.59,10.89-11.73,2.79-3.07,5.26-6.2,7.39-9.39,9.71-14.54,15.48-30.55,17.3-48.04,2.55-24.5-4.1-48.94-17.99-69.07ZM335.44,236.68c-.04,7.83-.83,15.06-2.36,21.7-3.56,15.53-10.39,29.48-20.46,41.84-3.45,4.22-7.1,7.9-10.98,11.06h0c-2.68,2.17-4.16,3.36-4.44,3.58-13.48,10.46-28.69,17.01-45.63,19.63-2.69.42-7.24.62-13.64.59h-52.98c-2.59,0-4.97-.13-7.15-.4-.56-.07-.98-.52-1.02-1.07-.17-2.62-.27-5.56-.3-8.82-.1-11.4-.09-27.96.03-49.67.05-7.83.83-15.06,2.36-21.7,3.57-15.53,10.39-29.48,20.47-41.84,3.44-4.22,7.09-7.91,10.97-11.06,2.68-2.18,4.16-3.37,4.44-3.59,13.49-10.45,28.69-17,45.63-19.62,2.69-.42,7.24-.62,13.64-.59h52.98c2.6,0,4.98.13,7.15.4.56.07.98.52,1.02,1.07.17,2.62.27,5.56.3,8.82.1,11.4.09,27.96-.03,49.67Z"/>
-                                             </svg>
-                                         </span>
-                                         <span class="social-text-box">
-                                             <span class="social-link-text text-flip-default">السينما.كوم</span>
-                                             <span class="social-link-text text-flip-alt">صانع أفلام مصري</span>
-                                         </span>
-                                     </span>
-                                     <span class="social-link-arrow">↗</span>
-                                 </a>
-                             </li>
+                                            </svg>
+                                        </span>
+                                        <span class="social-text-box">
+                                            <span class="social-link-text text-flip-default">elCinema.com</span>
+                                            <span class="social-link-text text-flip-alt">بحب السيما</span>
+                                        </span>
+                                    </span>
+                                    <span class="social-link-arrow">↗</span>
+                                </a>
+                            </li>
                             <li class="social-item">
                                 <a href="https://linkedin.com/in/imhackim" target="_blank" rel="noopener noreferrer" class="social-link text-flip-zone">
                                     <span class="social-link-left">
@@ -903,8 +1010,8 @@
                                             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                                         </span>
                                         <span class="social-text-box">
-                                            <span class="social-link-text text-flip-default">لينكد إن</span>
-                                            <span class="social-link-text text-flip-alt">الوجه الرسمي المحترم</span>
+                                            <span class="social-link-text text-flip-default">LinkedIn</span>
+                                            <span class="social-link-text text-flip-alt">بروفيشنال وكده</span>
                                         </span>
                                     </span>
                                     <span class="social-link-arrow">↗</span>
@@ -917,8 +1024,8 @@
                                             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
                                         </span>
                                         <span class="social-text-box">
-                                            <span class="social-link-text text-flip-default">إنستجرام</span>
-                                            <span class="social-link-text text-flip-alt">مش تيك توك بردو</span>
+                                            <span class="social-link-text text-flip-default">Instagram</span>
+                                            <span class="social-link-text text-flip-alt">مش بنزل صور المصيف!</span>
                                         </span>
                                     </span>
                                     <span class="social-link-arrow">↗</span>
@@ -931,8 +1038,8 @@
                                             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
                                         </span>
                                         <span class="social-text-box">
-                                            <span class="social-link-text text-flip-default">فيسبوك</span>
-                                            <span class="social-link-text text-flip-alt">ستوريات لايف ستايل في الغالب</span>
+                                            <span class="social-link-text text-flip-default">Facebook</span>
+                                            <span class="social-link-text text-flip-alt">عبثيات</span>
                                         </span>
                                     </span>
                                     <span class="social-link-arrow">↗</span>
@@ -952,21 +1059,29 @@
                             </div>
                         </div>
                         <div class="contact-detail">
-                            <span class="contact-detail-label">الموبايل</span>
-                            <div class="contact-detail-main">
-                                <span class="contact-icon">
-                                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                </span>
-                                <a href="tel:+201022027119" class="contact-detail-value">0102 202 7119</a>
+                            <span class="contact-detail-label">فون / واتساب</span>
+                            <div class="contact-numbers-stack">
+                                <div class="contact-number-row">
+                                    <span class="contact-icon">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                    </span>
+                                    <a href="tel:+201022027119" class="contact-detail-value" dir="ltr">+201022027119</a>
+                                </div>
+                                <div class="contact-number-row">
+                                    <span class="contact-icon">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+                                    </span>
+                                    <a href="https://wa.me/201022027119" target="_blank" rel="noopener noreferrer" class="contact-detail-value" dir="ltr">+201022027119</a>
+                                </div>
                             </div>
                         </div>
                         <div class="contact-detail">
-                            <span class="contact-detail-label">الموقع</span>
+                            <span class="contact-detail-label">عايز تخطفني؟</span>
                             <div class="contact-detail-main">
                                 <span class="contact-icon">
                                     <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                                 </span>
-                                <span class="contact-detail-value">القاهرة، مصر</span>
+                                <span class="contact-detail-value">الجيزة - مصر.</span>
                             </div>
                         </div>
                     </div>
@@ -979,8 +1094,8 @@
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container footer-inner">
-            <p class="footer-copyright">© 2026 أحمد حكيم. جميع الحقوق محفوظة.</p>
-            <a href="#hero" class="footer-back-top">الرجوع للأعلى ↑</a>
+            <p class="footer-copyright">©2026 جميع الحقوق محفوظة - أحمد حكيم.</p>
+            <a href="#hero" class="footer-back-top">اطلع فوق ↑</a>
         </div>
     </footer>
 
@@ -988,27 +1103,27 @@
     <div class="video-modal" id="videoModal">
         <div class="video-modal-bg" id="videoModalBg"></div>
         <div class="video-modal-content">
-            <button class="video-modal-close magnetic-item" id="videoModalClose" aria-label="Close video">
-                <span>إغلاق</span>
+            <button class="video-modal-close magnetic-item" id="videoModalClose" aria-label="اقفل الفيديو">
+                <span>اقفل</span>
                 <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
                     <path d="M18 6L6 18M6 6l12 12"/>
                 </svg>
             </button>
             <div class="video-wrapper">
-                <iframe id="showreelVideo" class="video-element" src="" data-src="https://www.youtube-nocookie.com/embed/UkVks-zKqak?autoplay=1" title="Ahmed Hackim Showreel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe id="showreelVideo" class="video-element" src="" data-src="https://player.vimeo.com/video/1047094716?autoplay=1" title="Showreel 2024/2025 Creative & Art Producer - Ahmed Hackim" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
     <!-- Floating Back to Top Button (On the Left) -->
-    <button class="back-to-top-btn magnetic-item" id="backToTopBtn" aria-label="Scroll to top">
+    <button class="back-to-top-btn magnetic-item" id="backToTopBtn" aria-label="اطلع فوق">
         <span>↑</span>
     </button>
 
     <!-- Floating Audio Controls (Bottom Left) -->
     <div class="floating-audio-controls">
         <!-- Music Toggle -->
-        <button class="floating-sound-btn magnetic-item" id="musicToggle" aria-label="Toggle background music">
+        <button class="floating-sound-btn magnetic-item" id="musicToggle" aria-label="تشغيل/إيقاف الموسيقى">
             <span class="sound-bars">
                 <span class="sound-bar"></span>
                 <span class="sound-bar"></span>
@@ -1019,13 +1134,13 @@
         </button>
 
         <!-- SFX Toggle -->
-        <button class="floating-sound-btn magnetic-item" id="sfxToggle" aria-label="Toggle sound effects">
+        <button class="floating-sound-btn magnetic-item" id="sfxToggle" aria-label="تشغيل/إيقاف المؤثرات الصوتية">
             <span class="sound-bars">
                 <span class="sound-bar"></span>
                 <span class="sound-bar"></span>
                 <span class="sound-bar"></span>
             </span>
-            <span class="sound-label">الأصوات</span>
+            <span class="sound-label">المؤثرات</span>
         </button>
     </div>
 
@@ -1036,12 +1151,12 @@
 
     <!-- Three.js 3D Engine -->
     <script src="libs/three.min.js" defer></script>
-    <!-- Lenis Smooth Scroll (10KB — critical for UX, keep defer) -->
+    <!-- Lenis Smooth Scroll (10KB — critical for UX) -->
     <script src="libs/lenis.min.js" defer></script>
-    <!-- Main Script (defer — runs after DOM parse) -->
+    <!-- Main Script -->
     <script src="js/script.js" defer></script>
 
-    <!-- Lazy-load Three.js + GLTFLoader + 3D Logo Data only when user scrolls near About section -->
+    <!-- Lazy-load Three.js + GLTFLoader + 3D Logo Data -->
     <script>
     (function() {
         var loaded3D = false;
@@ -1049,14 +1164,12 @@
             if (loaded3D) return;
             loaded3D = true;
             var scripts = [
-                'libs/three.min.js',
                 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js',
                 'js/logo-model-data.js'
             ];
             var idx = 0;
             function loadNext() {
                 if (idx >= scripts.length) {
-                    // All 3D scripts loaded — trigger 3D init if script.js already set it up
                     if (typeof window.__init3DLogo === 'function') window.__init3DLogo();
                     if (typeof window.__initWebGLLens === 'function') window.__initWebGLLens();
                     return;
@@ -1069,30 +1182,17 @@
             }
             loadNext();
         }
-
-        // Use IntersectionObserver to trigger when about section (or any project card) enters viewport
         if ('IntersectionObserver' in window) {
             var trigger = document.getElementById('about') || document.querySelector('.project-card');
             if (trigger) {
                 var obs = new IntersectionObserver(function(entries) {
                     entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            load3DScripts();
-                            obs.disconnect();
-                        }
+                        if (entry.isIntersecting) { load3DScripts(); obs.disconnect(); }
                     });
                 }, { rootMargin: '200px' });
                 obs.observe(trigger);
-            } else {
-                // Fallback: load after 3s idle
-                setTimeout(load3DScripts, 3000);
-            }
-        } else {
-            // Fallback for old browsers
-            setTimeout(load3DScripts, 2000);
-        }
-
-        // Also load if user scrolls (belt-and-suspenders)
+            } else { setTimeout(load3DScripts, 3000); }
+        } else { setTimeout(load3DScripts, 2000); }
         var scrollLoaded = false;
         window.addEventListener('scroll', function() {
             if (!scrollLoaded) { scrollLoaded = true; setTimeout(load3DScripts, 100); }
@@ -1101,4 +1201,3 @@
     </script>
 </body>
 </html>
-

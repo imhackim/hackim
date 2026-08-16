@@ -6,7 +6,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==================== CRT TV LOADING SCREEN ====================
     // ==================== CRT TV LOADING SCREEN & DOM VARIABLES ====================
     const loader = document.getElementById('loader');
     const loaderNumber = document.getElementById('loaderNumber');
@@ -146,9 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==================== LENIS SMOOTH SCROLL ====================
+    let lenis = null;
+
     function initSmoothScroll() {
         if (typeof Lenis !== 'undefined' && window.innerWidth > 768) {
-            const lenis = new Lenis({
+            lenis = new Lenis({
                 duration: 1.15,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential decay for buttery momentum
                 direction: 'vertical',
@@ -251,6 +252,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
+
+    // ==================== MOUSE-FOLLOWING HOVER CARD SYSTEM ====================
+    document.querySelectorAll('.text-flip-zone').forEach(zone => {
+        const hoverCard = zone.querySelector('.hover-follow-card');
+        if (!hoverCard) return;
+
+        let cardX = window.innerWidth / 2;
+        let cardY = window.innerHeight / 2;
+        let targetX = cardX;
+        let targetY = cardY;
+        let isHovered = false;
+
+        zone.addEventListener('mouseenter', (e) => {
+            isHovered = true;
+            zone.classList.add('is-hovering');
+            if (e && e.clientX) {
+                cardX = e.clientX;
+                cardY = e.clientY;
+                targetX = e.clientX;
+                targetY = e.clientY;
+                hoverCard.style.left = cardX + 'px';
+                hoverCard.style.top = cardY + 'px';
+            }
+        });
+
+        zone.addEventListener('mouseleave', () => {
+            isHovered = false;
+            zone.classList.remove('is-hovering');
+        });
+
+        zone.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
+
+        function updateHoverCard() {
+            if (isHovered) {
+                cardX += (targetX - cardX) * 0.2;
+                cardY += (targetY - cardY) * 0.2;
+                hoverCard.style.left = cardX + 'px';
+                hoverCard.style.top = cardY + 'px';
+            }
+            requestAnimationFrame(updateHoverCard);
+        }
+        updateHoverCard();
+    });
 
     // ==================== CUSTOM CURSOR ====================
     if (cursor && window.innerWidth > 768) {
@@ -823,7 +870,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = this.getAttribute('href') || '#about';
             const target = document.querySelector(targetId);
             if (target) {
-                if (typeof lenis !== 'undefined') {
+                if (lenis) {
                     lenis.scrollTo(target, { duration: 1.3, offset: 0 });
                 } else {
                     const offsetTop = target.getBoundingClientRect().top + window.pageYOffset;
@@ -892,7 +939,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function scrollToTopSmooth(e) {
         if (e) e.preventDefault();
-        if (typeof lenis !== 'undefined') {
+        if (lenis) {
             lenis.scrollTo(0, { duration: 1.3 });
         } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1166,13 +1213,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (videoModal) {
-        const openVideoModal = (e) => {
+        const openVideoModal = function(e) {
             if (e) {
                 e.preventDefault();
                 e.stopPropagation();
             }
             videoModal.classList.add('is-active');
-            if (typeof lenis !== 'undefined') lenis.stop();
+            if (lenis) lenis.stop();
             
             // Fade out background music smoothly
             if (fadeInInterval) clearInterval(fadeInInterval);
@@ -1192,9 +1239,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (showreelVideo) {
+                const customSrc = (this && typeof this.getAttribute === 'function') ? this.getAttribute('data-video-src') : null;
+                const defaultSrc = showreelVideo.getAttribute('data-src');
+                const targetSrc = customSrc || defaultSrc;
+
                 if (showreelVideo.tagName.toLowerCase() === 'iframe') {
-                    const dataSrc = showreelVideo.getAttribute('data-src');
-                    if (dataSrc) showreelVideo.src = dataSrc;
+                    if (targetSrc) showreelVideo.src = targetSrc;
                 } else {
                     showreelVideo.currentTime = 0;
                     showreelVideo.play().catch(err => console.log('Video autoplay prevented by browser:', err));
@@ -1208,7 +1258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.stopPropagation();
             }
             videoModal.classList.remove('is-active');
-            if (typeof lenis !== 'undefined') lenis.start();
+            if (lenis) lenis.start();
             if (showreelVideo) {
                 if (showreelVideo.tagName.toLowerCase() === 'iframe') {
                     showreelVideo.src = '';
@@ -1239,6 +1289,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (showreelPlayBtn) showreelPlayBtn.addEventListener('click', openVideoModal);
         if (showreelContainer) showreelContainer.addEventListener('click', openVideoModal);
 
+        document.querySelectorAll('.js-trigger-video-modal, [data-project="01"] .project-link').forEach(trigger => {
+            trigger.addEventListener('click', openVideoModal);
+        });
+
         if (videoModalClose) videoModalClose.addEventListener('click', closeVideoModal);
         if (videoModalBg) videoModalBg.addEventListener('click', closeVideoModal);
 
@@ -1255,7 +1309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initAbout3DLogo = () => {
         const container = document.getElementById('about3dContainer');
         const canvas = document.getElementById('about3dCanvas');
-        if (!container || !canvas || typeof THREE === 'undefined' || typeof THREE.GLTFLoader === 'undefined' || window.innerWidth <= 768) return;
+        if (!container || !canvas || typeof THREE === 'undefined' || typeof THREE.GLTFLoader === 'undefined') return;
 
         // Scene setup
         const scene = new THREE.Scene();
@@ -1692,3 +1746,19 @@ document.addEventListener('DOMContentLoaded', () => {
         initWebGLImageLensEffect();
     }
 });
+
+// ==================== DYNAMIC SCROLLBAR FADE OUT AFTER 1 SECOND ====================
+(() => {
+    let scrollTimer = null;
+    const docEl = document.documentElement;
+
+    const handleScroll = () => {
+        docEl.classList.add('is-scrolling');
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+            docEl.classList.remove('is-scrolling');
+        }, 1000);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+})();
