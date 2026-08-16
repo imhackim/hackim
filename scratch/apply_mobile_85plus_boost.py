@@ -47,7 +47,6 @@ def boost_html(filepath):
         'Movement.webp': 'width="120" height="40"',
         'MR1.webp': 'width="120" height="40"',
         'MS.webp': 'width="120" height="40"',
-        'NUB.webp': 'width="120" height="40"',
         'QNB.webp': 'width="120" height="40"',
     }
 
