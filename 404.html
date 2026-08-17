@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; frame-src https:; connect-src 'self' https:;">
+    <base href="/">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; frame-src https:; connect-src 'self' https:; media-src 'self' https: data: blob:;">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Error 404 | Ahmed Hackim</title>
@@ -11,18 +12,18 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Page Not Found | Ahmed Hackim">
     <meta property="og:description" content="Page not found. Return to Ahmed Hackim's portfolio to explore cinematic commercial films, fashion campaigns, and art direction.">
-    <meta property="og:image" content="images/profile.jpg">
-    <meta property="og:url" content="https://ahmedhackim.com/404.html">
+    <meta property="og:image" content="/images/profile.jpg">
+    <meta property="og:url" content="https://imhackim.com/404">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Page Not Found | Ahmed Hackim">
     <meta name="twitter:description" content="Page not found. Return to explore cinematic commercial films, fashion campaigns, and art direction.">
-    <meta name="twitter:image" content="images/profile.jpg">
+    <meta name="twitter:image" content="/images/profile.jpg">
     <!-- Canonical -->
-    <link rel="canonical" href="https://ahmedhackim.com/404.html">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="apple-touch-icon" href="images/favicon.png">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="canonical" href="https://imhackim.com/404">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         .error-bg {
             position: fixed;
@@ -127,13 +128,13 @@
 
     <!-- ==================== HEADER / NAVIGATION ==================== -->
     <header class="header is-visible" id="header">
-        <a href="index.html" class="header-logo" aria-label="Home">
-            <img src="images/WordMark.png" alt="Hackim" class="logo-img" height="20" fetchpriority="high">
+        <a href="/" class="header-logo" aria-label="Home">
+            <img src="/images/WordMark.png" alt="Hackim" class="logo-img" height="20" fetchpriority="high">
         </a>
         <nav class="header-nav">
             <ul class="nav-list" style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 2rem;">
                 <li class="nav-item">
-                    <a href="portfolio.html" class="nav-link magnetic-item" data-hover="Portfolio">
+                    <a href="/portfolio" class="nav-link magnetic-item" data-hover="Portfolio">
                         <span class="nav-link-default">Portfolio</span>
                         <span class="nav-link-alt">Portfolio</span>
                     </a>
@@ -146,10 +147,10 @@
         <!-- ==================== BACKGROUND VIDEO ==================== -->
         <div class="error-bg">
             <video class="video-element desktop-video" autoplay loop muted playsinline>
-                <source src="videos/404.mp4" type="video/mp4">
+                <source src="/videos/404.mp4" type="video/mp4">
             </video>
             <video class="video-element mobile-video" autoplay loop muted playsinline>
-                <source src="videos/404-mob.mp4" type="video/mp4">
+                <source src="/videos/404-mob.mp4" type="video/mp4">
             </video>
             <div class="error-bg-overlay"></div>
         </div>
@@ -179,7 +180,7 @@
         </div>
 
         <!-- Background Audio File -->
-        <audio id="bgAudio" src="audio/a-beautiful-mess.mp3" loop preload="auto"></audio>
+        <audio id="bgAudio" src="/audio/a-beautiful-mess.mp3" loop preload="auto"></audio>
 
         <!-- ===== STATUS INDICATOR (BOTTOM RIGHT) ===== -->
         <div class="error-status">
@@ -187,7 +188,6 @@
         </div>
     </main>
 
-    <script src="js/404_script.js" defer></script>
+    <script src="/js/404_script.js" defer></script>
 </body>
 </html>
-

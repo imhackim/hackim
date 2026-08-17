@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==================== INTERACTIVE HOVER SOUND EFFECTS ====================
-    const clickAudioPath = 'audio/click.ogg';
-    const closeAudioPath = 'audio/close.ogg';
+    const clickAudioPath = '/audio/click.ogg';
+    const closeAudioPath = '/audio/close.ogg';
 
     const clickPool = [];
     const closePool = [];
